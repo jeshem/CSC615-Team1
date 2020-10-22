@@ -7,7 +7,7 @@
 * 
 * File: motorcontroller.c
 *
-* Description: This file contains the method to set up wiringPi, wait for the button to be pressed, and run the motors
+* * Description: This file contains the method to set up wiringPi, wait for the button to be pressed, and run the motors
 *
 **************************************************************/
 
@@ -19,9 +19,9 @@
 
 
 // Using Motor4 terminal
-#define ENABLE 26 // pin 32 on motor shield
-#define CONTROL1 10 // pin 24 on motor shield
-#define CONTROL2 11 // pin 26 on motor shield
+#define ENABLE 12 // pin 19 on motor shield
+#define CONTROL1 13 // pin 21 on motor shield
+#define CONTROL2 14 // pin 23 on motor shield
 #define TRIGGER 0 // pin 11 on motor shield
 
 #define LIGHT 24 // pin 33 on motor shield
@@ -38,6 +38,8 @@ void setupWiringPins() {
     pinMode(LIGHT, OUTPUT);
     
     softPwmCreate(ENABLE, LowSpeed, HighSpeed);
+    softPwmWrite(ENABLE, LowSpeed);
+    delay(10);
 }
 
 void waitForButton() {
@@ -49,8 +51,9 @@ void waitForButton() {
 void runMotors() {
     printf("\nrunning motors\n");
     
-    //start full power in one direction
+    //accelerate to full power in one direction
     digitalWrite(LIGHT, HIGH);
+    digitalWrite(ENABLE, HIGH);
     forward();
     accelerate();
     
