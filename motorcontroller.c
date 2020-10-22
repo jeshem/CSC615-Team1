@@ -18,7 +18,7 @@
 #include <softPwm.h>
 
 
-// Using Motor4 terminal
+// Using Motor3 terminal
 #define ENABLE 12 // pin 19 on motor shield
 #define CONTROL1 13 // pin 21 on motor shield
 #define CONTROL2 14 // pin 23 on motor shield
