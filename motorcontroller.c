@@ -22,23 +22,25 @@
 #define ENABLE 12 // pin 19 on motor shield
 #define CONTROL1 13 // pin 21 on motor shield
 #define CONTROL2 14 // pin 23 on motor shield
-#define TRIGGER 0 // pin 11 on motor shield
+#define TRIGGER 7 // pin 11 on motor shield
 
 #define LIGHT 24 // pin 33 on motor shield
 
 #define HighSpeed 100
-#define LowSpeed 0
+#define LowSpeed 15
 
 void setupWiringPins() {
     wiringPiSetup();
-    pinMode(ENABLE, OUTPUT);
-    pinMode(CONTROL1, OUTPUT);
-    pinMode(CONTROL2, OUTPUT);
+    
+    softPwmCreate(ENABLE, 100, 100);
+    softPwmCreate(CONTROL1, 1, 100);
+    softPwmCreate(CONTROL2, 1, 100);
+    
     pinMode(TRIGGER, INPUT);
     pinMode(LIGHT, OUTPUT);
     
-    softPwmCreate(ENABLE, LowSpeed, HighSpeed);
-    softPwmWrite(ENABLE, LowSpeed);
+    digitalWrite(TRIGGER, LOW);
+    
     delay(10);
 }
 
@@ -57,9 +59,11 @@ void runMotors() {
     forward();
     accelerate();
     
+    
     //slow down over time to a stop
     brake();
     digitalWrite(LIGHT, LOW);
+    
 
     //run in reverse direction
     digitalWrite(LIGHT, HIGH);
@@ -72,13 +76,13 @@ void runMotors() {
 }
 
 void forward(){
-    digitalWrite(CONTROL1, HIGH);
-    digitalWrite(CONTROL2, LOW);
+    softPwmWrite(CONTROL2, 0);
+    softPwmWrite(CONTROL1, 100);
 }
 
 void reverse(){
-    digitalWrite(CONTROL1, LOW);
-    digitalWrite(CONTROL2, HIGH);
+    softPwmWrite(CONTROL1, 0);
+    softPwmWrite(CONTROL2, 100);
 }
 
 void accelerate(){
@@ -89,6 +93,7 @@ void accelerate(){
         fflush(stdout);
         delay(200);
     }
+    delay(2000);
 }
 
 void brake(){
@@ -99,4 +104,5 @@ void brake(){
         fflush(stdout);
         delay(200);
     }
+    delay(1000);
 }
