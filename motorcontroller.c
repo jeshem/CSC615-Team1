@@ -107,11 +107,38 @@ void runMotors() {
 }
 
 void forward(){
+
+    //Motor 1 Forward
     softPwmWrite(MOTOR1CONTROL2, 0);
     softPwmWrite(MOTOR1CONTROL1, 100);
+
+    //Motor 2 Forward
+    softPwmWrite(MOTOR2CONTROL2, 0);
+    softPwmWrite(MOTOR2CONTROL1, 100);
+
+    //Motor 3 Forward
+    softPwmWrite(MOTOR3CONTROL2, 0);
+    softPwmWrite(MOTOR3CONTROL1, 100);
+
+    //Motor 4 Forward
+    softPwmWrite(MOTOR4CONTROL2, 0);
+    softPwmWrite(MOTOR4CONTROL1, 100);
 }
 
 void reverse(){
+    //Motor 1 Reverse
+    softPwmWrite(MOTOR1CONTROL1, 0);
+    softPwmWrite(MOTOR1CONTROL2, 100);
+
+    //Motor 2 Reverse
+    softPwmWrite(MOTOR1CONTROL1, 0);
+    softPwmWrite(MOTOR1CONTROL2, 100);
+
+    //Motor 3 Reverse
+    softPwmWrite(MOTOR1CONTROL1, 0);
+    softPwmWrite(MOTOR1CONTROL2, 100);
+
+    //Motor 4 Reverse
     softPwmWrite(MOTOR1CONTROL1, 0);
     softPwmWrite(MOTOR1CONTROL2, 100);
 }
