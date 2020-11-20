@@ -17,12 +17,28 @@
 #include <time.h>
 #include <softPwm.h>
 
+//Button Trigger for Motors
+#define TRIGGER 7 // pin 7 on motor shield
 
-// Using Motor3 terminal
-#define ENABLE 12 // pin 19 on motor shield
-#define CONTROL1 13 // pin 21 on motor shield
-#define CONTROL2 14 // pin 23 on motor shield
-#define TRIGGER 7 // pin 11 on motor shield
+// Motor 1 Terminal
+#define ENABLE1 0 // pin 11 on motor shield
+#define MOTOR1CONTROL1 2 // pin 13 on motor shield
+#define MOTOR1CONTROL2 3 // pin 15 on motor shield
+
+// Motor 2 Terminal
+#define ENABLE2 6 // pin 22 on motor shield
+#define MOTOR2CONTROL1 4 // pin 16 on motor shield
+#define MOTOR2CONTROL2 5 // pin 18 on motor shield
+
+// Motor 3 Terminal
+#define ENABLE3 12 // pin 19 on motor shield
+#define MOTOR3CONTROL1 13 // pin 21 on motor shield
+#define MOTOR3CONTROL2 14 // pin 23 on motor shield
+
+// Motor 4 Terminal
+#define ENABLE4 32 // pin 19 on motor shield
+#define MOTOR3CONTROL1 13 // pin 21 on motor shield
+#define MOTOR3CONTROL2 14 // pin 23 on motor shield
 
 #define LIGHT 24 // pin 33 on motor shield
 
@@ -32,9 +48,21 @@
 void setupWiringPins() {
     wiringPiSetup();
     
-    softPwmCreate(ENABLE, 100, 100);
-    softPwmCreate(CONTROL1, 1, 100);
-    softPwmCreate(CONTROL2, 1, 100);
+    softPwmCreate(ENABLE1, 100, 100);
+    softPwmCreate(MOTOR1CONTROL1, 1, 100);
+    softPwmCreate(MOTOR1CONTROL2, 1, 100);
+
+    softPwmCreate(ENABLE2, 100, 100);
+    softPwmCreate(MOTOR2CONTROL1, 1, 100);
+    softPwmCreate(MOTOR2CONTROL2, 1, 100);
+
+    softPwmCreate(ENABLE3, 100, 100);
+    softPwmCreate(MOTOR3CONTROL1, 1, 100);
+    softPwmCreate(MOTOR3CONTROL2, 1, 100);
+
+    softPwmCreate(ENABLE4, 100, 100);
+    softPwmCreate(MOTOR4CONTROL1, 1, 100);
+    softPwmCreate(MOTOR4CONTROL2, 1, 100);
     
     pinMode(TRIGGER, INPUT);
     pinMode(LIGHT, OUTPUT);
@@ -55,7 +83,10 @@ void runMotors() {
     
     //accelerate to full power in one direction
     digitalWrite(LIGHT, HIGH);
-    digitalWrite(ENABLE, HIGH);
+    digitalWrite(ENABLE1, HIGH);
+    digitalWrite(ENABLE2, HIGH);
+    digitalWrite(ENABLE3, HIGH);
+    digitalWrite(ENABLE4, HIGH);
     forward();
     accelerate();
     
@@ -76,19 +107,22 @@ void runMotors() {
 }
 
 void forward(){
-    softPwmWrite(CONTROL2, 0);
-    softPwmWrite(CONTROL1, 100);
+    softPwmWrite(MOTOR1CONTROL2, 0);
+    softPwmWrite(MOTOR1CONTROL1, 100);
 }
 
 void reverse(){
-    softPwmWrite(CONTROL1, 0);
-    softPwmWrite(CONTROL2, 100);
+    softPwmWrite(MOTOR1CONTROL1, 0);
+    softPwmWrite(MOTOR1CONTROL2, 100);
 }
 
 void accelerate(){
     int power;
     for(power=LowSpeed; power<HighSpeed; power+=10){
-        softPwmWrite(ENABLE, power);
+        softPwmWrite(ENABLE1, power);
+        softPwmWrite(ENABLE2, power);
+        softPwmWrite(ENABLE3, power);
+        softPwmWrite(ENABLE4, power);
         printf("Speeding up\n");
         fflush(stdout);
         delay(200);
@@ -99,7 +133,10 @@ void accelerate(){
 void brake(){
     int power;
     for (power=HighSpeed; power>LowSpeed; power-=10) {
-        softPwmWrite(ENABLE, power);
+        softPwmWrite(ENABLE1, power);
+        softPwmWrite(ENABLE2, power);
+        softPwmWrite(ENABLE3, power);
+        softPwmWrite(ENABLE4, power);
         printf("Slowing down\n");
         fflush(stdout);
         delay(200);
