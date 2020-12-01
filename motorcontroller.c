@@ -36,7 +36,7 @@
 #define MOTOR3CONTROL2 14 // pin 23 on motor shield
 
 // Motor 4 Terminal
-#define ENABLE4 32 // pin 19 on motor shield
+#define ENABLE4 26 // pin 32 on motor shield
 #define MOTOR4CONTROL1 10 // pin 24 on motor shield
 #define MOTOR4CONTROL2 11 // pin 26 on motor shield
 
