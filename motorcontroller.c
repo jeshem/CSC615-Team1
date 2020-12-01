@@ -104,6 +104,12 @@ void runMotors() {
     //slow down again over time to a stop
     brake();
     digitalWrite(LIGHT, LOW);
+    
+    //stop all motors
+    softPwmWrite(ENABLE1, 0);
+    softPwmWrite(ENABLE2, 0);
+    softPwmWrite(ENABLE3, 0);
+    softPwmWrite(ENABLE4, 0);
 }
 
 void forward(){
