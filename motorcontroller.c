@@ -42,12 +42,15 @@
 
 #define LIGHT 24 // pin 33 on motor shield
 
+//Speed settings
 #define HighSpeed 100
+#define ThreeSpeed 75
+#define HalfSpeed 50
+#define OneSpeed 25
 #define LowSpeed 15
 
-void setupWiringPins() {
-    wiringPiSetup();
-    
+void setupMotors() {
+
     softPwmCreate(ENABLE1, 100, 100);
     softPwmCreate(MOTOR1CONTROL1, 1, 100);
     softPwmCreate(MOTOR1CONTROL2, 1, 100);

@@ -13,7 +13,7 @@
 
 #include <stdbool.h>
 
-void setupWiringPins();
+void setupMotors();
 void runMotors();
 void waitForButton();
 void forward();
