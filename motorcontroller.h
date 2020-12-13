@@ -16,7 +16,10 @@
 void setupMotors();
 void runMotors();
 void waitForButton();
-void forward();
+void forward(int speed);
+void rotateRight();
+void rotateLeft();
+void stopMotors();
 void reverse();
 void accelerate();
 void brake();
