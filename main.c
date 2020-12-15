@@ -73,12 +73,3 @@ void setupIrSensorThreads() {
         printf("Error:unable to create IR thread \n");
     }
 }
-
-void setupMotors() {
-    pthread_t t3;
-    int creationError, i;
-    creationError = pthread_create(&t3, NULL, readIr, (void *)i);
-    if (creationError) {
-        printf("Error:unable to create Motor thread \n");
-    }
-}
