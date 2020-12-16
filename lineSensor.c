@@ -52,7 +52,7 @@ void *readLine(void *threadid) {
         }
 
         line = digitalRead(LeftLine);
-        if (line == 1) {
+        if (line == 0) {
             printf("LeftLine detected! Angle Left\n");
             /*
             while (digitalRead(MiddleLine) != 1) {
@@ -65,7 +65,7 @@ void *readLine(void *threadid) {
         }
 
         line = digitalRead(LeftmostLine);
-        if (line == 1) {
+        if (line == 0) {
             printf("LeftMostLine detected! Big Left (Rotate maybe?)\n");
             /*
             while (digitalRead(MiddleLine) != 1) {
@@ -78,7 +78,7 @@ void *readLine(void *threadid) {
         }
 
         line = digitalRead(RightLine);
-        if (line == 1) {
+        if (line == 0) {
             printf("RightLine detected! Angle Right\n");
             /*
             while (digitalRead(MiddleLine) != 1) {
@@ -91,7 +91,7 @@ void *readLine(void *threadid) {
         }
 
         line = digitalRead(RightmostLine);
-        if (line == 1) {
+        if (line == 0) {
             printf("RightmostLine detected! Big Right (Rotate maybe?)\n");
             /*
             while (digitalRead(MiddleLine) != 1) {
