@@ -40,23 +40,26 @@ void setupLineSensors() {
 
 void *readLine(void *threadid) {
     long tid = (long)threadid;
+    stopMotors();
     while (true) {
         int line = digitalRead(MiddleLine);
         if (line == 1) {
             printf("Tracking Middle line\n");
-            forward(HalfSpeed);
+            //forward(HalfSpeed);
         } else {
-            stopMotors();
+            //stopMotors();
             printf("Off the Middle line\n");
         }
 
         line = digitalRead(LeftLine);
         if (line == 1) {
             printf("LeftLine detected! Angle Left\n");
+            /*
             while (digitalRead(MiddleLine) != 1) {
                 rotateLeft();
             }
             stopMotors();
+             */
         } else {
             //printf("Off the line\n");
         }
@@ -64,10 +67,12 @@ void *readLine(void *threadid) {
         line = digitalRead(LeftmostLine);
         if (line == 1) {
             printf("LeftMostLine detected! Big Left (Rotate maybe?)\n");
+            /*
             while (digitalRead(MiddleLine) != 1) {
                 rotateLeft();
             }
             stopMotors();
+            */
         } else {
             //printf("Off the line\n");
         }
@@ -75,9 +80,11 @@ void *readLine(void *threadid) {
         line = digitalRead(RightLine);
         if (line == 1) {
             printf("RightLine detected! Angle Right\n");
+            /*
             while (digitalRead(MiddleLine) != 1) {
                 rotateRight();
             }
+             */
             stopMotors();
         } else {
             //printf("Off the line\n");
@@ -86,14 +93,16 @@ void *readLine(void *threadid) {
         line = digitalRead(RightmostLine);
         if (line == 1) {
             printf("RightmostLine detected! Big Right (Rotate maybe?)\n");
+            /*
             while (digitalRead(MiddleLine) != 1) {
                 rotateRight();
             }
+             */
             stopMotors();
         } else {
             //printf("Off the line\n");
         }
-        delay(100);
+        //delay(100);
     }
     pthread_exit(NULL);
 }
