@@ -34,6 +34,7 @@
 void setup();
 void setupLineSensorThreads();
 void setupIrSensorThreads();
+void setupMotors();
 
 int main(int argc, char *argv[]) {
     setup();
@@ -65,10 +66,10 @@ void setupLineSensorThreads() {
 }
 
 void setupIrSensorThreads() {
-    pthread_t t1;
+    pthread_t t2;
     int creationError, i;
-    creationError = pthread_create(&t1, NULL, readIr, (void *)i);
+    creationError = pthread_create(&t2, NULL, readIr, (void *)i);
     if (creationError) {
-        printf("Error:unable to create Line thread \n");
+        printf("Error:unable to create IR thread \n");
     }
 }
