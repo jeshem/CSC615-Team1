@@ -42,7 +42,7 @@ void *readLine(void *threadid) {
     while (true) {
         int line = digitalRead(MiddleLine);
         if (line == baseMiddleLineReading) {
-            printf("Tracking Middle line\n");
+            //printf("Tracking Middle line\n");
             middleLineOn = true;
             rotatingLeft = false;
             rotatingRight = false;
@@ -67,7 +67,7 @@ void *readLine(void *threadid) {
 
             } else {
                 leftLineOn = false;
-                printf("Off the line\n");
+                //printf("Off the line\n");
             }
 
             line = digitalRead(RightLine);
@@ -82,7 +82,7 @@ void *readLine(void *threadid) {
                  */
             } else {
                 rightLineOn = false;
-                printf("Off the line\n");
+                //printf("Off the line\n");
             }
         }
 

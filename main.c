@@ -41,7 +41,7 @@ int main(int argc, char *argv[]) {
     while (true) {
         int line = digitalRead(MiddleLine);
         if (line == baseMiddleLineReading) {
-            printf("Tracking Middle line\n");
+            //printf("Tracking Middle line\n");
             middleLineOn = true;
             rotatingLeft = false;
             rotatingRight = false;
