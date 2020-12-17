@@ -76,37 +76,10 @@ void waitForButton() {
 }
 
 void runMotors() {
-    printf("\nrunning motors\n");
-    
-    //accelerate to full power in one direction
-    digitalWrite(LIGHT, HIGH);
-    digitalWrite(FRONTLEFT, HIGH);
-    digitalWrite(REARLEFT, HIGH);
-    digitalWrite(REARRIGHT, HIGH);
-    digitalWrite(FRONTRIGHT, HIGH);
-    forward(HighSpeed);
-    accelerate();
-    
-    
-    //slow down over time to a stop
-    brake();
-    digitalWrite(LIGHT, LOW);
-    
+    while (true) {
+        //do nothing for now, later check for control flags
 
-    //run in reverse direction
-    digitalWrite(LIGHT, HIGH);
-    reverse();
-    accelerate();
-    
-    //slow down again over time to a stop
-    brake();
-    digitalWrite(LIGHT, LOW);
-    
-    //stop all motors
-    softPwmWrite(FRONTLEFT, 0);
-    softPwmWrite(REARLEFT, 0);
-    softPwmWrite(REARRIGHT, 0);
-    softPwmWrite(FRONTRIGHT, 0);
+    }
 }
 
 void stopMotors() {
