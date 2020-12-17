@@ -34,13 +34,10 @@ int main(int argc, char *argv[]) {
     setup();
     delay(2000);
     printf("Now executing normal code");
-    forward(HalfSpeed);
-    /*
     setupLineSensorThreads();
     //setupIrSensorThreads();
     //waitForButton();
     runMotors();
-     */
 
     return 0;
 }

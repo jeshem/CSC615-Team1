@@ -52,13 +52,10 @@ void runMotors() {
             printf("Obstacle in front... braking.\n");
         } else if (middleLineOn) {
             printf("Tracking Middle line\n");
-            forward(HalfSpeed);
+            forward(OneSpeed);
             rotatingRight = false;
             rotatingLeft = false;
-        } else if (rotatingRight) {
-            rotateRight();
-        } else if (rotatingLeft) {
-            rotateLeft();
+            delay(500);
         } else if (leftLineOn) {
             printf("Should be rotating left\n");
             rotatingLeft = true;
@@ -68,7 +65,9 @@ void runMotors() {
             rotatingLeft = false;
             leftLineOn = false;
             middleLineOn = true;
-            forward(HighSpeed);
+            forward(OneSpeed);
+            printf("Should be moving forward\n");
+            delay(500);
         } else if (rightLineOn) {
             printf("Should be rotating right\n");
             rotatingRight = true;
@@ -78,13 +77,15 @@ void runMotors() {
             rotatingRight = false;
             rightLineOn = false;
             middleLineOn = true;
-            forward(HighSpeed);
+            printf("Should be moving forward\n");
+            forward(OneSpeed);
+            delay(500);
         } else if (!rightLineOn && !leftLineOn && !middleLineOn) {
             printf("should be moving forward at low speed\n");
-            forward(HighSpeed);
+            forward(OneSpeed);
         } else {
             printf("No sensors activated should move forward...\n");
-            forward(HighSpeed);
+            forward(OneSpeed);
         }
         delay(50);
     }
@@ -264,7 +265,7 @@ void reverse(){
 
 void accelerate(){
     int power;
-    for(power=LowSpeed; power<HighSpeed; power+=10){
+    for(power=LowSpeed; power<OneSpeed; power+=10){
         if (power > 100) power = 100;
         softPwmWrite(FRONTLEFT, power);
         softPwmWrite(REARLEFT, power);
@@ -281,7 +282,7 @@ void brake(){
     int power;
     disableMotors();
     /*
-    for (power=HighSpeed; power>LowSpeed; power-=10) {
+    for (power=OneSpeed; power>LowSpeed; power-=10) {
         softPwmWrite(FRONTLEFT, 0);
         softPwmWrite(REARLEFT, 0);
         softPwmWrite(REARRIGHT, 0);
