@@ -8,34 +8,25 @@
 #include <stdbool.h>
 #include "motorcontroller.h"
 
-// Line Sensors
-#define LeftmostLine 15 //pin #10
-#define LeftLine 14 //pin #8
-#define MiddleLine 4 //pin #7
-#define RightLine 3 //pin #5
-#define RightmostLine 2 //pin #3
-
-//Speed settings
-#define HighSpeed 100
-#define ThreeSpeed 75
-#define HalfSpeed 50
-#define OneSpeed 25
-#define LowSpeed 15
-
-//Motors
-#define FRONTLEFT 0 // pin 11 on motor shield
-#define REARLEFT 6 // pin 22 on motor shield
-#define REARRIGHT 12 // pin 19 on motor shield
-#define FRONTRIGHT 26 // pin 32 on motor shield
 
 void setupLineSensors() {
 
     //Line sensor pin setup
-    pinMode(LeftmostLine, INPUT);
     pinMode(LeftLine, INPUT);
     pinMode(MiddleLine, INPUT);
     pinMode(RightLine, INPUT);
-    pinMode(RightmostLine, INPUT);
+}
+
+void setBaseLineReading(int read) {
+    baseLineReading = read;
+}
+
+int getBaseLineReading() {
+    return baseLineReading;
+}
+
+void setupInitialLineRead() {
+    setBaseLineReading(digitalRead(MiddleLine));
 }
 
 void *readLine(void *threadid) {
@@ -64,19 +55,6 @@ void *readLine(void *threadid) {
             //printf("Off the line\n");
         }
 
-        line = digitalRead(LeftmostLine);
-        if (line == 0) {
-            printf("LeftMostLine detected! Big Left (Rotate maybe?)\n");
-            /*
-            while (digitalRead(MiddleLine) != 1) {
-                rotateLeft();
-            }
-            stopMotors();
-            */
-        } else {
-            //printf("Off the line\n");
-        }
-
         line = digitalRead(RightLine);
         if (line == 0) {
             printf("RightLine detected! Angle Right\n");
@@ -90,18 +68,6 @@ void *readLine(void *threadid) {
             //printf("Off the line\n");
         }
 
-        line = digitalRead(RightmostLine);
-        if (line == 0) {
-            printf("RightmostLine detected! Big Right (Rotate maybe?)\n");
-            /*
-            while (digitalRead(MiddleLine) != 1) {
-                rotateRight();
-            }
-             */
-            stopMotors();
-        } else {
-            //printf("Off the line\n");
-        }
         //delay(100);
     }
     pthread_exit(NULL);

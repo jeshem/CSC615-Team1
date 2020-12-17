@@ -13,5 +13,10 @@
 void *readLine(void *threadid);
 
 void setupLineSensors();
+int getBaseLineReading();
+void setBaseLineReading(int read);
+void setupInitialLineRead();
+int getLineReading(int sensor);
+int baseLineReading;
 
 #endif //ASSIGNMENT5_LINESENSOR_H

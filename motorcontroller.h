@@ -23,3 +23,31 @@ void stopMotors();
 void reverse();
 void accelerate();
 void brake();
+
+// Line Sensors
+//#define LeftmostLine 15 //pin #10
+#define LeftLine 16 //pin #8
+#define MiddleLine 20 //pin #7
+#define RightLine 21 //pin #5
+//#define RightmostLine 2 //pin #3
+
+//Speed settings
+#define HighSpeed 100
+#define ThreeSpeed 75
+#define HalfSpeed 50
+#define OneSpeed 25
+#define LowSpeed 15
+
+//Motors
+#define FRONTLEFT 0 // pin 11 on motor shield
+#define REARLEFT 6 // pin 22 on motor shield
+#define REARRIGHT 12 // pin 19 on motor shield
+#define FRONTRIGHT 26 // pin 32 on motor shield
+
+
+//Speed settings
+#define HighSpeed 100
+#define ThreeSpeed 75
+#define HalfSpeed 50
+#define OneSpeed 25
+#define LowSpeed 15

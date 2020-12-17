@@ -16,6 +16,7 @@
 #include <stdio.h>
 #include <time.h>
 #include <softPwm.h>
+#include <stdatomic.h>
 
 //Button Trigger for Motors
 #define TRIGGER 7 // pin 7 on motor shield
@@ -41,13 +42,6 @@
 #define FRONTRIGHTCONTROL2 11 // pin 26 on motor shield
 
 #define LIGHT 24 // pin 33 on motor shield
-
-//Speed settings
-#define HighSpeed 100
-#define ThreeSpeed 75
-#define HalfSpeed 50
-#define OneSpeed 25
-#define LowSpeed 15
 
 void setupMotors() {
 

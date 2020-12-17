@@ -54,6 +54,7 @@ void setup() {
     setupMotors();
     setupIrSensors();
     setupLineSensors();
+    setupInitialLineRead(); //reads the current middle line and sets the baseline as either 1 or 0
 }
 
 void setupLineSensorThreads() {
