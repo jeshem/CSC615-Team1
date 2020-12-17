@@ -44,7 +44,7 @@ void *readLine(void *threadid) {
             middleLineOn = true;
             rotatingLeft = false;
             rotatingRight = false;
-            forward(OneSpeed);
+            //forward(OneSpeed);
             delay(500);
         } else {
             //stopMotors();
