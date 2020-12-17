@@ -8,6 +8,10 @@
 #include <stdbool.h>
 #include "motorcontroller.h"
 
+#define LeftLine 29 //physical pin 40
+#define MiddleLine 28 //physical pin 38
+#define RightLine 26 //physical pin 36
+
 
 void setupLineSensors() {
 
