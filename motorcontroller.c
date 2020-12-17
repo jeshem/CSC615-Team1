@@ -205,6 +205,7 @@ void reverse(){
 void accelerate(){
     int power;
     for(power=LowSpeed; power<HighSpeed; power+=10){
+        if (power > 100) power = 100;
         softPwmWrite(FRONTLEFT, power);
         softPwmWrite(REARLEFT, power);
         softPwmWrite(REARRIGHT, power);
