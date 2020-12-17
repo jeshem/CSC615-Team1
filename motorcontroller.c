@@ -49,24 +49,24 @@ void runMotors() {
         //do nothing for now, later check for control flags
         if (middleLineOn) {
             printf("Tracking Middle line\n");
-            forward(OneSpeed);
+            forward(HalfSpeed);
         } else if (leftLineOn) {
             printf("Should be rotating left\n");
             while (digitalRead(MiddleLine) != baseMiddleLineReading) {
                 rotateLeft();
             }
             leftLineOn = false;
-            forward(OneSpeed);
+            forward(HalfSpeed);
         } else if (rightLineOn) {
             printf("Should be rotating right\n");
             while (digitalRead(MiddleLine) != baseMiddleLineReading) {
                 rotateRight();
             }
             rightLineOn = false;
-            forward(OneSpeed);
+            forward(HalfSpeed);
         } else if (!rightLineOn && !leftLineOn && !middleLineOn) {
             printf("should be moving forward at low speed\n");
-            forward(OneSpeed);
+            forward(HalfSpeed);
         }
     }
 }
@@ -169,16 +169,16 @@ void rotateRight() {
 
     enableMotors();
     softPwmWrite(FRONTRIGHTCONTROL1, 0);
-    softPwmWrite(FRONTRIGHTCONTROL2, OneSpeed);
+    softPwmWrite(FRONTRIGHTCONTROL2, HalfSpeed);
 
     softPwmWrite(REARRIGHTCONTROL1, 0);
-    softPwmWrite(REARRIGHTCONTROL2, OneSpeed);
+    softPwmWrite(REARRIGHTCONTROL2, HalfSpeed);
 
     //left side motors go forward halfspeed
-    softPwmWrite(FRONTLEFTCONTROL1, OneSpeed);
+    softPwmWrite(FRONTLEFTCONTROL1, HalfSpeed);
     softPwmWrite(FRONTLEFTCONTROL2, 0);
 
-    softPwmWrite(REARLEFTCONTROL1, OneSpeed);
+    softPwmWrite(REARLEFTCONTROL1, HalfSpeed);
     softPwmWrite(REARLEFTCONTROL2, 0);
 }
 
@@ -200,18 +200,18 @@ void rotateLeft() {
     //right side motors go reverse halfspeed
 
     enableMotors();
-    softPwmWrite(FRONTRIGHTCONTROL1, OneSpeed);
+    softPwmWrite(FRONTRIGHTCONTROL1, HalfSpeed);
     softPwmWrite(FRONTRIGHTCONTROL2, 0);
 
-    softPwmWrite(REARRIGHTCONTROL1, OneSpeed);
+    softPwmWrite(REARRIGHTCONTROL1, HalfSpeed);
     softPwmWrite(REARRIGHTCONTROL2, 0);
 
     //left side motors go forward halfspeed
     softPwmWrite(FRONTLEFTCONTROL1, 0);
-    softPwmWrite(FRONTLEFTCONTROL2, OneSpeed);
+    softPwmWrite(FRONTLEFTCONTROL2, HalfSpeed);
 
     softPwmWrite(REARLEFTCONTROL1, 0);
-    softPwmWrite(REARLEFTCONTROL2, OneSpeed);
+    softPwmWrite(REARLEFTCONTROL2, HalfSpeed);
 }
 
 void reverse(){
