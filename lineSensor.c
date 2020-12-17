@@ -36,9 +36,9 @@ void setupInitialLineRead() {
 
 void *readLine(void *threadid) {
     long tid = (long)threadid;
-    stopMotors();
-    enableMotors();
-    forward(OneSpeed);
+    //stopMotors();
+    //enableMotors();
+    //forward(OneSpeed);
     while (true) {
         int line = digitalRead(MiddleLine);
         if (line == baseMiddleLineReading) {
@@ -46,7 +46,7 @@ void *readLine(void *threadid) {
             middleLineOn = true;
             rotatingLeft = false;
             rotatingRight = false;
-            forward(OneSpeed);
+            //forward(OneSpeed);
             delay(500);
         } else {
             //stopMotors();

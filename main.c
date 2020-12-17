@@ -38,6 +38,7 @@ int main(int argc, char *argv[]) {
     //setupIrSensorThreads();
     //waitForButton();
     //runMotors();
+    enableMotors();
     while (true) {
         int line = digitalRead(MiddleLine);
         if (line == baseMiddleLineReading) {
