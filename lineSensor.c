@@ -40,18 +40,18 @@ void *readLine(void *threadid) {
     while (true) {
         int line = digitalRead(MiddleLine);
         if (line == baseMiddleLineReading) {
-            printf("Tracking Middle line\n");
+            //printf("Tracking Middle line\n");
             middleLineOn = true;
             //forward(HalfSpeed);
         } else {
             //stopMotors();
             middleLineOn = false;
-            printf("Off the Middle line\n");
+            //printf("Off the Middle line\n");
         }
 
         line = digitalRead(LeftLine);
         if (line != baseLeftLineReading) {
-            printf("LeftLine detected! Angle Left\n");
+            //printf("LeftLine detected! Angle Left\n");
             leftLineOn = true;
             /*
             while (digitalRead(MiddleLine) != 1) {
@@ -67,7 +67,7 @@ void *readLine(void *threadid) {
         line = digitalRead(RightLine);
         if (line != baseRightLineReading) {
             rightLineOn = true;
-            printf("RightLine detected! Angle Right\n");
+            //printf("RightLine detected! Angle Right\n");
             /*
             while (digitalRead(MiddleLine) != 1) {
                 rotateRight();

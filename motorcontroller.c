@@ -47,12 +47,16 @@ void runMotors() {
     while (true) {
         //do nothing for now, later check for control flags
         if (middleLineOn) {
+            printf("Tracking Middle line\n");
             forward(HalfSpeed);
         } else if (leftLineOn) {
+            printf("Should be rotating left\n");
             rotateLeft();
         } else if (rightLineOn) {
+            printf("Should be rotating right\n");
             rotateRight();
         } else if (!rightLineOn && !leftLineOn && !middleLineOn) {
+            printf("should be moving forward at low speed\n");
             forward(LowSpeed);
         }
     }
