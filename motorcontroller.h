@@ -26,9 +26,9 @@ void brake();
 
 // Line Sensors
 //#define LeftmostLine 15 //pin #10
-#define LeftLine 16 //pin #8
-#define MiddleLine 20 //pin #7
-#define RightLine 21 //pin #5
+#define LeftLine 29 //pin #40
+#define MiddleLine 28 //pin #38
+#define RightLine 27 //pin #36
 //#define RightmostLine 2 //pin #3
 
 //Speed settings

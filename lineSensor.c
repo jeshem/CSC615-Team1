@@ -8,6 +8,8 @@
 #include <stdbool.h>
 #include "motorcontroller.h"
 
+#define ONLINE 1
+#define OFFLINE 0
 
 void setupLineSensors() {
 
@@ -34,9 +36,9 @@ void setupInitialLineRead() {
 void *readLine(void *threadid) {
     long tid = (long)threadid;
     stopMotors();
-    while (true) {
+    while (1) {
         int line = digitalRead(MiddleLine);
-        if (line == baseMiddleLineReading) {
+        if (line == ONLINE) {
             printf("Tracking Middle line\n");
             //forward(HalfSpeed);
         } else {
@@ -45,7 +47,7 @@ void *readLine(void *threadid) {
         }
 
         line = digitalRead(LeftLine);
-        if (line != baseLeftLineReading) {
+        if (line != OFFLINE) {
             printf("LeftLine detected! Angle Left\n");
             /*
             while (digitalRead(MiddleLine) != 1) {
@@ -58,7 +60,7 @@ void *readLine(void *threadid) {
         }
 
         line = digitalRead(RightLine);
-        if (line != baseRightLineReading) {
+        if (line != OFFLINE) {
             printf("RightLine detected! Angle Right\n");
             /*
             while (digitalRead(MiddleLine) != 1) {
