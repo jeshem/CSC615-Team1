@@ -23,6 +23,7 @@ void stopMotors();
 void reverse();
 void accelerate();
 void brake();
+void testMotors();
 
 // Line Sensors
 //#define LeftmostLine 15 //pin #10

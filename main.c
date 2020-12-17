@@ -30,6 +30,10 @@ void setupIrSensorThreads();
 
 int main(int argc, char *argv[]) {
     setup();
+    delay(1000);
+    testMotors();
+    delay(3000);
+    printf("Now executing normal code");
     setupLineSensorThreads();
     setupIrSensorThreads();
     //waitForButton();

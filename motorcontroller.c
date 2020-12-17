@@ -62,6 +62,33 @@ void runMotors() {
     }
 }
 
+void testMotors() {
+    brake();
+    printf("Should be running front left\n");
+    //Motor 1 Forward
+    softPwmWrite(FRONTLEFTCONTROL1, HalfSpeed);
+    softPwmWrite(FRONTLEFTCONTROL2, 0);
+    delay(4000); brake();
+
+    printf("Should be running rear left\n");
+    //Motor 2 Forward
+    softPwmWrite(REARLEFTCONTROL1, HalfSpeed);
+    softPwmWrite(REARLEFTCONTROL2, 0);
+    delay(4000); brake();
+
+    printf("Should be running rear right\n");
+    //Motor 3 Forward
+    softPwmWrite(REARRIGHTCONTROL1, HalfSpeed);
+    softPwmWrite(REARRIGHTCONTROL2, 0);
+    delay(4000); brake();
+
+    printf("Should be running front right\n");
+    //Motor 4 Forward
+    softPwmWrite(FRONTRIGHTCONTROL1, HalfSpeed);
+    softPwmWrite(FRONTRIGHTCONTROL2, 0);
+    delay(4000); brake();
+}
+
 void setupMotors() {
 
     softPwmCreate(FRONTLEFT, 100, 100);
