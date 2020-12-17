@@ -218,14 +218,20 @@ void accelerate(){
 
 void brake(){
     int power;
+    softPwmWrite(FRONTLEFT, 0);
+    softPwmWrite(REARLEFT, 0);
+    softPwmWrite(REARRIGHT, 0);
+    softPwmWrite(FRONTRIGHT, 0);
+    /*
     for (power=HighSpeed; power>LowSpeed; power-=10) {
-        softPwmWrite(FRONTLEFT, power);
-        softPwmWrite(REARLEFT, power);
-        softPwmWrite(REARRIGHT, power);
-        softPwmWrite(FRONTRIGHT, power);
+        softPwmWrite(FRONTLEFT, 0);
+        softPwmWrite(REARLEFT, 0);
+        softPwmWrite(REARRIGHT, 0);
+        softPwmWrite(FRONTRIGHT, 0);
         printf("Slowing down\n");
         fflush(stdout);
         delay(200);
     }
+     */
     delay(1000);
 }
