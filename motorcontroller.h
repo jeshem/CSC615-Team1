@@ -25,6 +25,9 @@ void accelerate();
 void brake();
 void testMotors();
 
+#define HIGH 1
+#define LOW 0
+
 // Line Sensors
 //#define LeftmostLine 15 //pin #10
 #define LeftLine 29 //pin #40

@@ -66,24 +66,28 @@ void testMotors() {
     brake();
     printf("Should be running front left\n");
     //Motor 1 Forward
+    digitalWrite(FRONTLEFT, HIGH);
     softPwmWrite(FRONTLEFTCONTROL1, HalfSpeed);
     softPwmWrite(FRONTLEFTCONTROL2, 0);
     delay(4000); brake();
 
     printf("Should be running rear left\n");
     //Motor 2 Forward
+    digitalWrite(REARLEFT, HIGH);
     softPwmWrite(REARLEFTCONTROL1, HalfSpeed);
     softPwmWrite(REARLEFTCONTROL2, 0);
     delay(4000); brake();
 
     printf("Should be running rear right\n");
     //Motor 3 Forward
+    digitalWrite(REARRIGHT, HIGH);
     softPwmWrite(REARRIGHTCONTROL1, HalfSpeed);
     softPwmWrite(REARRIGHTCONTROL2, 0);
     delay(4000); brake();
 
     printf("Should be running front right\n");
     //Motor 4 Forward
+    digitalWrite(FRONTRIGHT, HIGH);
     softPwmWrite(FRONTRIGHTCONTROL1, HalfSpeed);
     softPwmWrite(FRONTRIGHTCONTROL2, 0);
     delay(4000); brake();
@@ -219,10 +223,10 @@ void accelerate(){
 
 void brake(){
     int power;
-    softPwmWrite(FRONTLEFT, 0);
-    softPwmWrite(REARLEFT, 0);
-    softPwmWrite(REARRIGHT, 0);
-    softPwmWrite(FRONTRIGHT, 0);
+    softPwmWrite(FRONTLEFT, LOW);
+    softPwmWrite(REARLEFT, LOW);
+    softPwmWrite(REARRIGHT, LOW);
+    softPwmWrite(FRONTRIGHT, LOW);
     /*
     for (power=HighSpeed; power>LowSpeed; power-=10) {
         softPwmWrite(FRONTLEFT, 0);
