@@ -57,7 +57,7 @@ void runMotors() {
             rotateRight();
         } else if (!rightLineOn && !leftLineOn && !middleLineOn) {
             printf("should be moving forward at low speed\n");
-            forward(LowSpeed);
+            forward(OneSpeed);
         }
     }
 }
@@ -95,6 +95,7 @@ void testMotors() {
 
 void setupMotors() {
 
+    enableMotors();
     softPwmCreate(FRONTLEFT, 100, 100);
     softPwmCreate(FRONTLEFTCONTROL1, 1, 100);
     softPwmCreate(FRONTLEFTCONTROL2, 1, 100);
@@ -127,6 +128,7 @@ void waitForButton() {
 
 void stopMotors() {
     //stop all motors
+    disableMotors();
     softPwmWrite(FRONTLEFT, 0);
     softPwmWrite(REARLEFT, 0);
     softPwmWrite(REARRIGHT, 0);
@@ -134,10 +136,7 @@ void stopMotors() {
 }
 
 void forward(int speed){
-    digitalWrite(FRONTLEFT, HIGH);
-    digitalWrite(REARLEFT, HIGH);
-    digitalWrite(REARRIGHT, HIGH);
-    digitalWrite(FRONTRIGHT, HIGH);
+    enableMotors();
 
     //Motor 1 Forward
     softPwmWrite(FRONTLEFTCONTROL1, speed);
