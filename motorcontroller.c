@@ -56,12 +56,14 @@ void runMotors() {
                 rotateLeft();
             }
             leftLineOn = false;
+            forward(OneSpeed);
         } else if (rightLineOn) {
             printf("Should be rotating right\n");
             while (digitalRead(MiddleLine) != baseMiddleLineReading) {
                 rotateRight();
             }
             rightLineOn = false;
+            forward(OneSpeed);
         } else if (!rightLineOn && !leftLineOn && !middleLineOn) {
             printf("should be moving forward at low speed\n");
             forward(OneSpeed);
