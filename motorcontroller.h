@@ -55,7 +55,7 @@ void disableMotors();
 #define HighSpeed 100
 #define ThreeSpeed 75
 #define HalfSpeed 50
-#define OneSpeed 25
+#define OneSpeed 30
 #define LowSpeed 15
 
 bool middleLineOn;

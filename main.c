@@ -33,7 +33,7 @@ int main(int argc, char *argv[]) {
     delay(2000);
     printf("Now executing normal code");
     setupLineSensorThreads();
-    setupIrSensorThreads();
+    //setupIrSensorThreads();
     //waitForButton();
     runMotors();
 
