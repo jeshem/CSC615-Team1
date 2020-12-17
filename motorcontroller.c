@@ -119,7 +119,8 @@ void testMotors() {
 }
 
 void setupMotors() {
-
+    rotatingLeft = false;
+    rotatingRight = false;
     enableMotors();
     softPwmCreate(FRONTLEFT, 100, 100);
     softPwmCreate(FRONTLEFTCONTROL1, 1, 100);
