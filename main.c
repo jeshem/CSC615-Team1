@@ -38,7 +38,9 @@ int main(int argc, char *argv[]) {
     //setupIrSensorThreads();
     //waitForButton();
     //runMotors();
+    while (true) {
 
+    }
     return 0;
 }
 
