@@ -61,3 +61,5 @@ void disableMotors();
 bool middleLineOn;
 bool leftLineOn;
 bool rightLineOn;
+
+bool avoidingObstacle;
