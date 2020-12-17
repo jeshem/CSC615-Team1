@@ -43,6 +43,21 @@
 
 #define LIGHT 24 // pin 33 on motor shield
 
+void runMotors() {
+    while (true) {
+        //do nothing for now, later check for control flags
+        if (middleLineOn) {
+            forward(HalfSpeed);
+        } else if (leftLineOn) {
+            rotateLeft();
+        } else if (rightLineOn) {
+            rotateRight();
+        } else if (!rightLineOn && !leftLineOn && !middleLineOn) {
+            forward(LowSpeed);
+        }
+    }
+}
+
 void setupMotors() {
 
     softPwmCreate(FRONTLEFT, 100, 100);
@@ -73,13 +88,6 @@ void waitForButton() {
     while (digitalRead(TRIGGER) != 1){
     }
     printf("Button pressed");
-}
-
-void runMotors() {
-    while (true) {
-        //do nothing for now, later check for control flags
-
-    }
 }
 
 void stopMotors() {
