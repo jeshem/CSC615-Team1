@@ -201,7 +201,7 @@ void forward(int speed){
     softPwmWrite(FRONTRIGHTCONTROL1, speed);
     softPwmWrite(FRONTRIGHTCONTROL2, 0);
 
-    delay(500);
+    delay(2000);
 }
 
 void rotateRight() {
