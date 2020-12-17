@@ -34,6 +34,10 @@ int main(int argc, char *argv[]) {
     setup();
     delay(2000);
     printf("Now executing normal code");
+    while (true) {
+        printf("looping forward one speed");
+        forward(OneSpeed);
+    }
     setupLineSensorThreads();
     //setupIrSensorThreads();
     //waitForButton();
