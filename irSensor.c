@@ -41,7 +41,7 @@ void *readIr(void *threadid) {
         if (ir != 1) {
             printf("Something is to the left of the back of the Car\n");
         }
-        delay(1000);
+        //delay(1000);
     }
     pthread_exit(NULL);
 }
