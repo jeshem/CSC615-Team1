@@ -50,6 +50,8 @@ void runMotors() {
         if (middleLineOn) {
             printf("Tracking Middle line\n");
             forward(HalfSpeed);
+            rotatingRight = false;
+            rotatingLeft = false;
         } else if (rotatingRight) {
             rotateRight();
         } else if (rotatingLeft) {
@@ -63,7 +65,7 @@ void runMotors() {
             rotatingLeft = false;
             leftLineOn = false;
             middleLineOn = true;
-            forward(HalfSpeed);
+            forward(HighSpeed);
         } else if (rightLineOn) {
             printf("Should be rotating right\n");
             rotatingRight = true;
@@ -73,13 +75,13 @@ void runMotors() {
             rotatingRight = false;
             rightLineOn = false;
             middleLineOn = true;
-            forward(HalfSpeed);
+            forward(HighSpeed);
         } else if (!rightLineOn && !leftLineOn && !middleLineOn) {
             printf("should be moving forward at low speed\n");
-            forward(HalfSpeed);
+            forward(HighSpeed);
         } else {
             printf("No sensors activated should move forward...\n");
-            forward(HalfSpeed);
+            forward(HighSpeed);
         }
         delay(50);
     }
