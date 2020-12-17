@@ -28,7 +28,7 @@
 void setup();
 void setupLineSensorThreads();
 void setupIrSensorThreads();
-void setupEchoSensors();
+void setupEchoSensorThreads();
 
 int main(int argc, char *argv[]) {
     setup();
@@ -47,14 +47,15 @@ int main(int argc, char *argv[]) {
  */
 void setup() {
     wiringPiSetup();
+    setupEchoSensorPins();
     setupMotors();
     setupIrSensors();
     setupLineSensors();
     setupInitialLineRead(); //reads the current middle line and sets the baseline as either 1 or 0
-    setupEchoSensors();
+    setupEchoSensorThreads();
 }
 
-void setupEchoSensors() {
+void setupEchoSensorThreads() {
     pthread_t t1, t2;
     int creationError, i, i2;
     creationError = pthread_create(&t1, NULL, readFrontDistance, (void *)i);

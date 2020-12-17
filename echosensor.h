@@ -14,7 +14,7 @@
 #ifndef ASSIGNMENT_2_TAPELESS_RULER_PAMBALOS_ECHOSENSOR_H
 #define ASSIGNMENT_2_TAPELESS_RULER_PAMBALOS_ECHOSENSOR_H
 
-void setup();
+void setupEchoSensorPins();
 void *readFrontDistance(void * tid);
 void *readSideRearDistance(void * tid);
 

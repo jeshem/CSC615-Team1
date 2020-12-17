@@ -75,8 +75,7 @@ void *readFrontDistance(void * tid) {
     delay(300);
 }
 
-void setup() {
-    wiringPiSetup();
+void setupEchoSensorPins() {
     pinMode(TRIGGERFRONT, OUTPUT);
     pinMode(ECHOFRONT, INPUT);
     pinMode(TRIGGERREAR, OUTPUT);
