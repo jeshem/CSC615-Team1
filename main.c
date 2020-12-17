@@ -40,6 +40,14 @@ int main(int argc, char *argv[]) {
     //runMotors();
     enableMotors();
     while (true) {
+        printf("Rotating right");
+        rotateRight();
+        delay(3000);
+        printf("Rotating left");
+        rotateLeft();
+        delay(3000);
+
+        /*
         int line = digitalRead(MiddleLine);
         if (line == baseMiddleLineReading) {
             //printf("Tracking Middle line\n");
@@ -78,7 +86,7 @@ int main(int argc, char *argv[]) {
             } else {
                 rightLineOn = false;
                 printf("Off the line\n");
-            }
+            }*/
         }
     }
     return 0;
