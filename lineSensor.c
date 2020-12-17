@@ -57,10 +57,13 @@ void *readLine(void *threadid) {
             if (line != baseLeftLineReading) {
                 printf("LeftLine detected! Angle Left\n");
                 leftLineOn = true;
+                /*
                 while (digitalRead(MiddleLine) != 1) {
                     rotateLeft();
                 }
+
                 stopMotors();
+                 */
 
             } else {
                 leftLineOn = false;
@@ -71,10 +74,12 @@ void *readLine(void *threadid) {
             if (line != baseRightLineReading) {
                 rightLineOn = true;
                 printf("RightLine detected! Angle Right\n");
+                /*
                 while (digitalRead(MiddleLine) != 1) {
                     rotateRight();
                 }
                 stopMotors();
+                 */
             } else {
                 rightLineOn = false;
                 printf("Off the line\n");
