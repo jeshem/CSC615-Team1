@@ -17,16 +17,18 @@ void setupLineSensors() {
     pinMode(RightLine, INPUT);
 }
 
-void setBaseLineReading(int read) {
-    baseLineReading = read;
+void setMiddleBaseLineReading(int read) {
+    baseMiddleLineReading = read;
 }
 
-int getBaseLineReading() {
-    return baseLineReading;
+int getMiddleBaseLineReading() {
+    return baseMiddleLineReading;
 }
 
 void setupInitialLineRead() {
-    setBaseLineReading(digitalRead(MiddleLine));
+    setMiddleBaseLineReading(digitalRead(MiddleLine));
+    baseLeftLineReading = digitalRead(LeftLine);
+    baseRightLineReading = digitalRead(RightLine);
 }
 
 void *readLine(void *threadid) {
@@ -34,7 +36,7 @@ void *readLine(void *threadid) {
     stopMotors();
     while (true) {
         int line = digitalRead(MiddleLine);
-        if (line == 1) {
+        if (line == baseMiddleLineReading) {
             printf("Tracking Middle line\n");
             //forward(HalfSpeed);
         } else {
@@ -43,7 +45,7 @@ void *readLine(void *threadid) {
         }
 
         line = digitalRead(LeftLine);
-        if (line == 0) {
+        if (line != baseLeftLineReading) {
             printf("LeftLine detected! Angle Left\n");
             /*
             while (digitalRead(MiddleLine) != 1) {
@@ -56,7 +58,7 @@ void *readLine(void *threadid) {
         }
 
         line = digitalRead(RightLine);
-        if (line == 0) {
+        if (line != baseRightLineReading) {
             printf("RightLine detected! Angle Right\n");
             /*
             while (digitalRead(MiddleLine) != 1) {
