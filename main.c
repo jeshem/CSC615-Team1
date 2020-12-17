@@ -40,10 +40,10 @@ int main(int argc, char *argv[]) {
     //runMotors();
     enableMotors();
     while (true) {
-        printf("Rotating right");
+        printf("Rotating right\n");
         rotateRight();
         delay(6000);
-        printf("Rotating left");
+        printf("Rotating left\n");
         rotateLeft();
         delay(6000);
 
