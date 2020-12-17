@@ -42,6 +42,8 @@ void *readLine(void *threadid) {
         if (line == baseMiddleLineReading) {
             //printf("Tracking Middle line\n");
             middleLineOn = true;
+            rotatingLeft = false;
+            rotatingRight = false;
             forward(HalfSpeed);
             delay(50);
         } else {
