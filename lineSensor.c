@@ -8,8 +8,8 @@
 #include <stdbool.h>
 #include "motorcontroller.h"
 
-#define ONLINE 0
-#define OFFLINE 1
+#define ONLINE 1
+#define OFFLINE 0
 
 void setupLineSensors() {
 
