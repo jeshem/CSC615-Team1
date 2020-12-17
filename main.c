@@ -51,7 +51,7 @@ int main(int argc, char *argv[]) {
             rotatingLeft = false;
             rotatingRight = false;
             forward(OneSpeed);
-            delay(500);
+            //delay(500);
         } else {
             //stopMotors();
             middleLineOn = false;
@@ -64,7 +64,7 @@ int main(int argc, char *argv[]) {
                 while (digitalRead(MiddleLine) != 1) {
                     rotateLeft();
                 }
-                stopMotors();
+                //stopMotors();
 
             } else {
                 leftLineOn = false;
