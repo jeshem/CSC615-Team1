@@ -12,6 +12,7 @@
 **************************************************************/
 
 #include "motorcontroller.h"
+#include "lineSensor.h"
 #include <wiringPi.h>
 #include <stdio.h>
 #include <time.h>
@@ -51,10 +52,16 @@ void runMotors() {
             forward(OneSpeed);
         } else if (leftLineOn) {
             printf("Should be rotating left\n");
-            rotateLeft();
+            while (digitalRead(MiddleLine) != baseMiddleLineReading) {
+                rotateLeft();
+            }
+            leftLineOn = false;
         } else if (rightLineOn) {
             printf("Should be rotating right\n");
-            rotateRight();
+            while (digitalRead(MiddleLine) != baseMiddleLineReading) {
+                rotateRight();
+            }
+            rightLineOn = false;
         } else if (!rightLineOn && !leftLineOn && !middleLineOn) {
             printf("should be moving forward at low speed\n");
             forward(OneSpeed);
