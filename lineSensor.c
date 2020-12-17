@@ -36,7 +36,7 @@ void setupInitialLineRead() {
 void *readLine(void *threadid) {
     long tid = (long)threadid;
     stopMotors();
-    while (1) {
+    while (true) {
         int line = digitalRead(MiddleLine);
         if (line == ONLINE) {
             printf("Tracking Middle line\n");
