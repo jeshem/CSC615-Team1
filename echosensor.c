@@ -12,6 +12,7 @@
 **************************************************************/
 
 #include "echosensor.h"
+#include "motorcontroller.h"
 #include <wiringPi.h>
 #include <stdio.h>
 #include <time.h>
@@ -46,6 +47,11 @@ void *readSideRearDistance(void * tid) {
     printf("Rear side distanceByClock was: %fcm\n", distanceByClock);
     printf("Rear side distanceByMicros was: %fcm\n", distanceByMicros);
     fflush(stdout);
+    if (distanceByClock < 30 || distanceByMicros < 30) {
+        obstacleOnLeft = true;
+    } else {
+        obstacleOnLeft = false;
+    }
     delay(300);
 }
 void *readFrontDistance(void * tid) {
@@ -72,6 +78,11 @@ void *readFrontDistance(void * tid) {
     printf("Front distanceByClock was: %fcm\n", distanceByClock);
     printf("Front distanceByMicros was: %fcm\n", distanceByMicros);
     fflush(stdout);
+    if (distanceByClock < 30 || distanceByMicros < 30) {
+        obstacleInFront = true;
+    } else {
+        obstacleInFront = false;
+    }
     delay(300);
 }
 
