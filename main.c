@@ -24,17 +24,9 @@
 #include "lineSensor.h"
 #include "irSensor.h"
 
-// Line Sensors
-#define LeftmostLine 15 //pin #10
-#define LeftLine 14 //pin #8
-#define MiddleLine 4 //pin #7
-#define RightLine 3 //pin #5
-#define RightmostLine 2 //pin #3
-
 void setup();
 void setupLineSensorThreads();
 void setupIrSensorThreads();
-void setupMotors();
 
 int main(int argc, char *argv[]) {
     setup();
