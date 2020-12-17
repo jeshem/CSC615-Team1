@@ -47,7 +47,7 @@ void *readLine(void *threadid) {
             forward(HalfSpeed);
             delay(50);
         } else {
-            //stopMotors();
+            stopMotors();
             middleLineOn = false;
             //printf("Off the Middle line\n");
         
