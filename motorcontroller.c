@@ -56,6 +56,7 @@ void runMotors() {
                 rotateLeft();
             }
             leftLineOn = false;
+            middleLineOn = true;
             forward(HalfSpeed);
         } else if (rightLineOn) {
             printf("Should be rotating right\n");
@@ -63,6 +64,7 @@ void runMotors() {
                 rotateRight();
             }
             rightLineOn = false;
+            middleLineOn = true;
             forward(HalfSpeed);
         } else if (!rightLineOn && !leftLineOn && !middleLineOn) {
             printf("should be moving forward at low speed\n");
