@@ -43,8 +43,8 @@ void *readSideRearDistance(void * tid) {
     double timeTakenMicros = tt1 - tt0;
     double distanceByClock = ((VELOCITY_METERS_PER_SECOND*100)*(timeTaken))/2;
     double distanceByMicros = ((VELOCITY_METERS_PER_SECOND*100)*(timeTakenMicros/1000000))/2;
-    printf("distanceByClock was: %fcm\n", distanceByClock);
-    printf("distanceByMicros was: %fcm\n", distanceByMicros);
+    printf("Rear side distanceByClock was: %fcm\n", distanceByClock);
+    printf("Rear side distanceByMicros was: %fcm\n", distanceByMicros);
     fflush(stdout);
     delay(300);
 }
@@ -69,8 +69,8 @@ void *readFrontDistance(void * tid) {
     double timeTakenMicros = tt1 - tt0;
     double distanceByClock = ((VELOCITY_METERS_PER_SECOND*100)*(timeTaken))/2;
     double distanceByMicros = ((VELOCITY_METERS_PER_SECOND*100)*(timeTakenMicros/1000000))/2;
-    printf("distanceByClock was: %fcm\n", distanceByClock);
-    printf("distanceByMicros was: %fcm\n", distanceByMicros);
+    printf("Front distanceByClock was: %fcm\n", distanceByClock);
+    printf("Front distanceByMicros was: %fcm\n", distanceByMicros);
     fflush(stdout);
     delay(300);
 }
