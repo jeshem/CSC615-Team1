@@ -82,7 +82,7 @@ void runMotors() {
             printf("No sensors activated should move forward...\n");
             forward(OneSpeed);
         }
-        delay(100);
+        delay(50);
     }
 }
 

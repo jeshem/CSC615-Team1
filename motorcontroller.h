@@ -50,14 +50,6 @@ void disableMotors();
 #define REARRIGHT 12 // pin 19 on motor shield
 #define FRONTRIGHT 26 // pin 32 on motor shield
 
-
-//Speed settings
-#define HighSpeed 100
-#define ThreeSpeed 75
-#define HalfSpeed 50
-#define OneSpeed 30
-#define LowSpeed 15
-
 bool middleLineOn;
 bool leftLineOn;
 bool rightLineOn;
