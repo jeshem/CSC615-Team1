@@ -67,7 +67,8 @@ void *readLine(void *threadid) {
                 rotateRight();
             }
              */
-            stopMotors();
+            
+            //stopMotors();
         } else {
             //printf("Off the line\n");
         }
