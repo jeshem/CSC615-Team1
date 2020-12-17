@@ -50,8 +50,7 @@ void runMotors() {
         if (obstacleInFront) {
             brake();
             printf("Obstacle in front... braking.\n");
-        }
-        if (middleLineOn) {
+        } else if (middleLineOn) {
             printf("Tracking Middle line\n");
             forward(HalfSpeed);
             rotatingRight = false;
