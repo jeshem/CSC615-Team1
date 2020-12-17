@@ -143,7 +143,11 @@ void setupMotors() {
     pinMode(LIGHT, OUTPUT);
     
     digitalWrite(TRIGGER, LOW);
-    
+
+    avoidingObstacle = false;
+    obstacleInFront = false;
+    obstacleOnLeft = false;
+    obstacleClearedBack = false;
     delay(10);
 }
 
