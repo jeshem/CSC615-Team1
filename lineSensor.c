@@ -28,6 +28,7 @@ int getMiddleBaseLineReading() {
 }
 
 void setupInitialLineRead() {
+    delay(3000);
     setMiddleBaseLineReading(digitalRead(MiddleLine));
     baseLeftLineReading = digitalRead(LeftLine);
     baseRightLineReading = digitalRead(RightLine);
@@ -38,17 +39,20 @@ void *readLine(void *threadid) {
     stopMotors();
     while (true) {
         int line = digitalRead(MiddleLine);
-        if (line == ONLINE) {
+        if (line == baseMiddleLineReading) {
             printf("Tracking Middle line\n");
+            middleLineOn = true;
             //forward(HalfSpeed);
         } else {
             //stopMotors();
+            middleLineOn = false;
             printf("Off the Middle line\n");
         }
 
         line = digitalRead(LeftLine);
-        if (line != OFFLINE) {
+        if (line != baseLeftLineReading) {
             printf("LeftLine detected! Angle Left\n");
+            leftLineOn = true;
             /*
             while (digitalRead(MiddleLine) != 1) {
                 rotateLeft();
@@ -56,11 +60,13 @@ void *readLine(void *threadid) {
             stopMotors();
              */
         } else {
+            leftLineOn = false;
             //printf("Off the line\n");
         }
 
         line = digitalRead(RightLine);
-        if (line != OFFLINE) {
+        if (line != baseRightLineReading) {
+            rightLineOn = true;
             printf("RightLine detected! Angle Right\n");
             /*
             while (digitalRead(MiddleLine) != 1) {
@@ -70,6 +76,7 @@ void *readLine(void *threadid) {
             
             //stopMotors();
         } else {
+            rightLineOn = false;
             //printf("Off the line\n");
         }
 

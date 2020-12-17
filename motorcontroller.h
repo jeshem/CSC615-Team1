@@ -51,3 +51,7 @@ void brake();
 #define HalfSpeed 50
 #define OneSpeed 25
 #define LowSpeed 15
+
+bool middleLineOn;
+bool leftLineOn;
+bool rightLineOn;
