@@ -34,7 +34,7 @@ int main(int argc, char *argv[]) {
     setup();
     delay(2000);
     printf("Now executing normal code");
-    setupLineSensorThreads();
+    //setupLineSensorThreads();
     //setupIrSensorThreads();
     //waitForButton();
     //runMotors();
@@ -42,10 +42,10 @@ int main(int argc, char *argv[]) {
     while (true) {
         printf("Rotating right");
         rotateRight();
-        delay(3000);
+        delay(6000);
         printf("Rotating left");
         rotateLeft();
-        delay(3000);
+        delay(6000);
 
         /*
         int line = digitalRead(MiddleLine);
