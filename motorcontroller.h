@@ -63,3 +63,5 @@ bool leftLineOn;
 bool rightLineOn;
 
 bool avoidingObstacle;
+bool rotatingRight;
+bool rotatingLeft;

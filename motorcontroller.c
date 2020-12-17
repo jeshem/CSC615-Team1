@@ -47,22 +47,31 @@
 void runMotors() {
     while (true) {
         //do nothing for now, later check for control flags
-        if (middleLineOn) {
+        if (rotatingRight) {
+            rotateRight();
+        } else if (rotatingLeft) {
+            rotateLeft();
+        }
+        else if (middleLineOn) {
             printf("Tracking Middle line\n");
             forward(OneSpeed);
         } else if (leftLineOn) {
             printf("Should be rotating left\n");
+            rotatingLeft = true;
             while (digitalRead(MiddleLine) != baseMiddleLineReading) {
                 rotateLeft();
             }
+            rotatingLeft = false;
             leftLineOn = false;
             middleLineOn = true;
             forward(OneSpeed);
         } else if (rightLineOn) {
             printf("Should be rotating right\n");
+            rotatingRight = true;
             while (digitalRead(MiddleLine) != baseMiddleLineReading) {
                 rotateRight();
             }
+            rotatingRight = false;
             rightLineOn = false;
             middleLineOn = true;
             forward(OneSpeed);
