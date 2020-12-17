@@ -30,6 +30,8 @@ void setupLineSensorThreads();
 void setupIrSensorThreads();
 void setupEchoSensorThreads();
 
+void testRotate();
+
 int main(int argc, char *argv[]) {
     setup();
     delay(2000);
@@ -40,18 +42,11 @@ int main(int argc, char *argv[]) {
     //runMotors();
     enableMotors();
     while (true) {
-        printf("Rotating right\n");
-        rotateRight();
-        delay(6000);
-        brake();
-        printf("Rotating left\n");
-        rotateLeft();
-        delay(6000);
+        //testRotate();
 
-        /*
         int line = digitalRead(MiddleLine);
         if (line == baseMiddleLineReading) {
-            //printf("Tracking Middle line\n");
+            printf("Tracking Middle line\n");
             middleLineOn = true;
             rotatingLeft = false;
             rotatingRight = false;
@@ -69,7 +64,7 @@ int main(int argc, char *argv[]) {
                 while (digitalRead(MiddleLine) != 1) {
                     rotateLeft();
                 }
-                //stopMotors();
+                stopMotors();
 
             } else {
                 leftLineOn = false;
@@ -83,13 +78,25 @@ int main(int argc, char *argv[]) {
                 while (digitalRead(MiddleLine) != 1) {
                     rotateRight();
                 }
-                //stopMotors();
+                stopMotors();
             } else {
                 rightLineOn = false;
                 printf("Off the line\n");
-            }*/
+            }
+        }
+        delay(100);
     }
     return 0;
+}
+
+void testRotate() {
+    printf("Rotating right\n");
+    rotateRight();
+    delay(6000);
+    brake();
+    printf("Rotating left\n");
+    rotateLeft();
+    delay(6000);
 }
 
 /**
