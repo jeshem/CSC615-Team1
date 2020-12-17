@@ -60,7 +60,7 @@ int main(int argc, char *argv[]) {
                 while (digitalRead(MiddleLine) != 1) {
                     rotateLeft();
                 }
-                stopMotors();
+                //stopMotors();
 
             } else {
                 leftLineOn = false;
@@ -74,7 +74,7 @@ int main(int argc, char *argv[]) {
                 while (digitalRead(MiddleLine) != 1) {
                     rotateRight();
                 }
-                stopMotors();
+                //stopMotors();
             } else {
                 rightLineOn = false;
                 printf("Off the line\n");
