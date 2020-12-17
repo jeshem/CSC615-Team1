@@ -207,7 +207,7 @@ void forward(int speed){
 void rotateRight() {
     //right side motors go reverse OneSpeed
 
-    enableMotors();
+    //enableMotors();
     softPwmWrite(FRONTRIGHTCONTROL1, 0);
     softPwmWrite(FRONTRIGHTCONTROL2, 0);
 
@@ -239,7 +239,7 @@ void disableMotors() {
 void rotateLeft() {
     //right side motors go reverse OneSpeed
 
-    enableMotors();
+    //enableMotors();
     softPwmWrite(FRONTRIGHTCONTROL1, OneSpeed);
     softPwmWrite(FRONTRIGHTCONTROL2, 0);
 
