@@ -51,8 +51,7 @@ void runMotors() {
             rotateRight();
         } else if (rotatingLeft) {
             rotateLeft();
-        }
-        else if (middleLineOn) {
+        } else if (middleLineOn) {
             printf("Tracking Middle line\n");
             forward(OneSpeed);
         } else if (leftLineOn) {

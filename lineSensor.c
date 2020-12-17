@@ -42,7 +42,8 @@ void *readLine(void *threadid) {
         if (line == baseMiddleLineReading) {
             //printf("Tracking Middle line\n");
             middleLineOn = true;
-            //forward(HalfSpeed);
+            forward(HalfSpeed);
+            delay(50);
         } else {
             //stopMotors();
             middleLineOn = false;
