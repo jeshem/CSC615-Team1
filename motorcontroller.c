@@ -171,6 +171,8 @@ void stopMotors() {
 
 void forward(int speed){
     enableMotors();
+    rotatingRight = false; rotatingRight = false;
+    printf("Should be running forward\n");
 
     //Motor 1 Forward
     softPwmCreate(FRONTLEFT, speed, speed);
@@ -192,7 +194,7 @@ void forward(int speed){
     softPwmWrite(FRONTRIGHTCONTROL1, speed);
     softPwmWrite(FRONTRIGHTCONTROL2, 0);
 
-    delay(100);
+    delay(500);
 }
 
 void rotateRight() {
