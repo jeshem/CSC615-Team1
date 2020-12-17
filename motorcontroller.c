@@ -16,53 +16,100 @@
 #include <stdio.h>
 #include <time.h>
 #include <softPwm.h>
+#include <stdatomic.h>
 
 //Button Trigger for Motors
 #define TRIGGER 7 // pin 7 on motor shield
 
-// Motor 1 Terminal
-#define ENABLE1 0 // pin 11 on motor shield
-#define MOTOR1CONTROL1 2 // pin 13 on motor shield
-#define MOTOR1CONTROL2 3 // pin 15 on motor shield
+// Motor 1 Terminal - front left
+#define FRONTLEFT 0 // pin 11 on motor shield
+#define FRONTLEFTCONTROL1 2 // pin 13 on motor shield
+#define FRONTLEFTCONTROL2 3 // pin 15 on motor shield
 
-// Motor 2 Terminal
-#define ENABLE2 6 // pin 22 on motor shield
-#define MOTOR2CONTROL1 4 // pin 16 on motor shield
-#define MOTOR2CONTROL2 5 // pin 18 on motor shield
+// Motor 2 Terminal - rear left
+#define REARLEFT 6 // pin 22 on motor shield
+#define REARLEFTCONTROL1 4 // pin 16 on motor shield
+#define REARLEFTCONTROL2 5 // pin 18 on motor shield
 
-// Motor 3 Terminal
-#define ENABLE3 12 // pin 19 on motor shield
-#define MOTOR3CONTROL1 13 // pin 21 on motor shield
-#define MOTOR3CONTROL2 14 // pin 23 on motor shield
+// Motor 3 Terminal - rear right
+#define REARRIGHT 12 // pin 19 on motor shield
+#define REARRIGHTCONTROL1 13 // pin 21 on motor shield
+#define REARRIGHTCONTROL2 14 // pin 23 on motor shield
 
-// Motor 4 Terminal
-#define ENABLE4 26 // pin 32 on motor shield
-#define MOTOR4CONTROL1 10 // pin 24 on motor shield
-#define MOTOR4CONTROL2 11 // pin 26 on motor shield
+// Motor 4 Terminal - front right
+#define FRONTRIGHT 26 // pin 32 on motor shield
+#define FRONTRIGHTCONTROL1 10 // pin 24 on motor shield
+#define FRONTRIGHTCONTROL2 11 // pin 26 on motor shield
 
 #define LIGHT 24 // pin 33 on motor shield
 
-#define HighSpeed 100
-#define LowSpeed 15
+void runMotors() {
+    while (true) {
+        //do nothing for now, later check for control flags
+        if (middleLineOn) {
+            printf("Tracking Middle line\n");
+            forward(OneSpeed);
+        } else if (leftLineOn) {
+            printf("Should be rotating left\n");
+            rotateLeft();
+        } else if (rightLineOn) {
+            printf("Should be rotating right\n");
+            rotateRight();
+        } else if (!rightLineOn && !leftLineOn && !middleLineOn) {
+            printf("should be moving forward at low speed\n");
+            forward(LowSpeed);
+        }
+    }
+}
 
-void setupWiringPins() {
-    wiringPiSetup();
-    
-    softPwmCreate(ENABLE1, 100, 100);
-    softPwmCreate(MOTOR1CONTROL1, 1, 100);
-    softPwmCreate(MOTOR1CONTROL2, 1, 100);
+void testMotors() {
+    brake();
+    printf("Should be running front left\n");
+    //Motor 1 Forward
+    digitalWrite(FRONTLEFT, HIGH);
+    softPwmWrite(FRONTLEFTCONTROL1, HalfSpeed);
+    softPwmWrite(FRONTLEFTCONTROL2, 0);
+    delay(4000); brake();
 
-    softPwmCreate(ENABLE2, 100, 100);
-    softPwmCreate(MOTOR2CONTROL1, 1, 100);
-    softPwmCreate(MOTOR2CONTROL2, 1, 100);
+    printf("Should be running rear left\n");
+    //Motor 2 Forward
+    digitalWrite(REARLEFT, HIGH);
+    softPwmWrite(REARLEFTCONTROL1, HalfSpeed);
+    softPwmWrite(REARLEFTCONTROL2, 0);
+    delay(4000); brake();
 
-    softPwmCreate(ENABLE3, 100, 100);
-    softPwmCreate(MOTOR3CONTROL1, 1, 100);
-    softPwmCreate(MOTOR3CONTROL2, 1, 100);
+    printf("Should be running rear right\n");
+    //Motor 3 Forward
+    digitalWrite(REARRIGHT, HIGH);
+    softPwmWrite(REARRIGHTCONTROL1, HalfSpeed);
+    softPwmWrite(REARRIGHTCONTROL2, 0);
+    delay(4000); brake();
 
-    softPwmCreate(ENABLE4, 100, 100);
-    softPwmCreate(MOTOR4CONTROL1, 1, 100);
-    softPwmCreate(MOTOR4CONTROL2, 1, 100);
+    printf("Should be running front right\n");
+    //Motor 4 Forward
+    digitalWrite(FRONTRIGHT, HIGH);
+    softPwmWrite(FRONTRIGHTCONTROL1, HalfSpeed);
+    softPwmWrite(FRONTRIGHTCONTROL2, 0);
+    delay(4000); brake();
+}
+
+void setupMotors() {
+
+    softPwmCreate(FRONTLEFT, 100, 100);
+    softPwmCreate(FRONTLEFTCONTROL1, 1, 100);
+    softPwmCreate(FRONTLEFTCONTROL2, 1, 100);
+
+    softPwmCreate(REARLEFT, 100, 100);
+    softPwmCreate(REARLEFTCONTROL1, 1, 100);
+    softPwmCreate(REARLEFTCONTROL2, 1, 100);
+
+    softPwmCreate(REARRIGHT, 100, 100);
+    softPwmCreate(REARRIGHTCONTROL1, 1, 100);
+    softPwmCreate(REARRIGHTCONTROL2, 1, 100);
+
+    softPwmCreate(FRONTRIGHT, 100, 100);
+    softPwmCreate(FRONTRIGHTCONTROL1, 1, 100);
+    softPwmCreate(FRONTRIGHTCONTROL2, 1, 100);
     
     pinMode(TRIGGER, INPUT);
     pinMode(LIGHT, OUTPUT);
@@ -78,84 +125,113 @@ void waitForButton() {
     printf("Button pressed");
 }
 
-void runMotors() {
-    printf("\nrunning motors\n");
-    
-    //accelerate to full power in one direction
-    digitalWrite(LIGHT, HIGH);
-    digitalWrite(ENABLE1, HIGH);
-    digitalWrite(ENABLE2, HIGH);
-    digitalWrite(ENABLE3, HIGH);
-    digitalWrite(ENABLE4, HIGH);
-    forward();
-    accelerate();
-    
-    
-    //slow down over time to a stop
-    brake();
-    digitalWrite(LIGHT, LOW);
-    
-
-    //run in reverse direction
-    digitalWrite(LIGHT, HIGH);
-    reverse();
-    accelerate();
-    
-    //slow down again over time to a stop
-    brake();
-    digitalWrite(LIGHT, LOW);
-    
+void stopMotors() {
     //stop all motors
-    softPwmWrite(ENABLE1, 0);
-    softPwmWrite(ENABLE2, 0);
-    softPwmWrite(ENABLE3, 0);
-    softPwmWrite(ENABLE4, 0);
+    softPwmWrite(FRONTLEFT, 0);
+    softPwmWrite(REARLEFT, 0);
+    softPwmWrite(REARRIGHT, 0);
+    softPwmWrite(FRONTRIGHT, 0);
 }
 
-void forward(){
+void forward(int speed){
+    digitalWrite(FRONTLEFT, HIGH);
+    digitalWrite(REARLEFT, HIGH);
+    digitalWrite(REARRIGHT, HIGH);
+    digitalWrite(FRONTRIGHT, HIGH);
 
     //Motor 1 Forward
-    softPwmWrite(MOTOR1CONTROL1, 100);
-    softPwmWrite(MOTOR1CONTROL2, 0);
+    softPwmWrite(FRONTLEFTCONTROL1, speed);
+    softPwmWrite(FRONTLEFTCONTROL2, 0);
 
     //Motor 2 Forward
-    softPwmWrite(MOTOR2CONTROL1, 100);
-    softPwmWrite(MOTOR2CONTROL2, 0);
+    softPwmWrite(REARLEFTCONTROL1, speed);
+    softPwmWrite(REARLEFTCONTROL2, 0);
 
     //Motor 3 Forward
-    softPwmWrite(MOTOR3CONTROL1, 100);
-    softPwmWrite(MOTOR3CONTROL2, 0);
+    softPwmWrite(REARRIGHTCONTROL1, speed);
+    softPwmWrite(REARRIGHTCONTROL2, 0);
 
     //Motor 4 Forward
-    softPwmWrite(MOTOR4CONTROL1, 100);
-    softPwmWrite(MOTOR4CONTROL2, 0);
+    softPwmWrite(FRONTRIGHTCONTROL1, speed);
+    softPwmWrite(FRONTRIGHTCONTROL2, 0);
+}
+
+void rotateRight() {
+    //right side motors go reverse halfspeed
+
+    enableMotors();
+    softPwmWrite(FRONTRIGHTCONTROL1, 0);
+    softPwmWrite(FRONTRIGHTCONTROL2, OneSpeed);
+
+    softPwmWrite(REARRIGHTCONTROL1, 0);
+    softPwmWrite(REARRIGHTCONTROL2, OneSpeed);
+
+    //left side motors go forward halfspeed
+    softPwmWrite(FRONTLEFTCONTROL1, OneSpeed);
+    softPwmWrite(FRONTLEFTCONTROL2, 0);
+
+    softPwmWrite(REARLEFTCONTROL1, OneSpeed);
+    softPwmWrite(REARLEFTCONTROL2, 0);
+}
+
+void enableMotors() {
+    digitalWrite(FRONTLEFT, HIGH);
+    digitalWrite(REARLEFT, HIGH);
+    digitalWrite(REARRIGHT, HIGH);
+    digitalWrite(FRONTRIGHT, HIGH);
+}
+
+void disableMotors() {
+    digitalWrite(FRONTLEFT, LOW);
+    digitalWrite(REARLEFT, LOW);
+    digitalWrite(REARRIGHT, LOW);
+    digitalWrite(FRONTRIGHT, LOW);
+}
+
+void rotateLeft() {
+    //right side motors go reverse halfspeed
+
+    enableMotors();
+    softPwmWrite(FRONTRIGHTCONTROL1, OneSpeed);
+    softPwmWrite(FRONTRIGHTCONTROL2, 0);
+
+    softPwmWrite(REARRIGHTCONTROL1, OneSpeed);
+    softPwmWrite(REARRIGHTCONTROL2, 0);
+
+    //left side motors go forward halfspeed
+    softPwmWrite(FRONTLEFTCONTROL1, 0);
+    softPwmWrite(FRONTLEFTCONTROL2, OneSpeed);
+
+    softPwmWrite(REARLEFTCONTROL1, 0);
+    softPwmWrite(REARLEFTCONTROL2, OneSpeed);
 }
 
 void reverse(){
     //Motor 1 Reverse
-    softPwmWrite(MOTOR1CONTROL1, 0);
-    softPwmWrite(MOTOR1CONTROL2, 100);
+    softPwmWrite(FRONTLEFTCONTROL1, 0);
+    softPwmWrite(FRONTLEFTCONTROL2, 100);
 
     //Motor 2 Reverse
-    softPwmWrite(MOTOR2CONTROL1, 0);
-    softPwmWrite(MOTOR2CONTROL2, 100);
+    softPwmWrite(REARLEFTCONTROL1, 0);
+    softPwmWrite(REARLEFTCONTROL2, 100);
 
     //Motor 3 Reverse
-    softPwmWrite(MOTOR3CONTROL1, 0);
-    softPwmWrite(MOTOR3CONTROL2, 100);
+    softPwmWrite(REARRIGHTCONTROL1, 0);
+    softPwmWrite(REARRIGHTCONTROL2, 100);
 
     //Motor 4 Reverse
-    softPwmWrite(MOTOR4CONTROL1, 0);
-    softPwmWrite(MOTOR4CONTROL2, 100);
+    softPwmWrite(FRONTRIGHTCONTROL1, 0);
+    softPwmWrite(FRONTRIGHTCONTROL2, 100);
 }
 
 void accelerate(){
     int power;
     for(power=LowSpeed; power<HighSpeed; power+=10){
-        softPwmWrite(ENABLE1, power);
-        softPwmWrite(ENABLE2, power);
-        softPwmWrite(ENABLE3, power);
-        softPwmWrite(ENABLE4, power);
+        if (power > 100) power = 100;
+        softPwmWrite(FRONTLEFT, power);
+        softPwmWrite(REARLEFT, power);
+        softPwmWrite(REARRIGHT, power);
+        softPwmWrite(FRONTRIGHT, power);
         printf("Speeding up\n");
         fflush(stdout);
         delay(200);
@@ -165,14 +241,17 @@ void accelerate(){
 
 void brake(){
     int power;
+    disableMotors();
+    /*
     for (power=HighSpeed; power>LowSpeed; power-=10) {
-        softPwmWrite(ENABLE1, power);
-        softPwmWrite(ENABLE2, power);
-        softPwmWrite(ENABLE3, power);
-        softPwmWrite(ENABLE4, power);
+        softPwmWrite(FRONTLEFT, 0);
+        softPwmWrite(REARLEFT, 0);
+        softPwmWrite(REARRIGHT, 0);
+        softPwmWrite(FRONTRIGHT, 0);
         printf("Slowing down\n");
         fflush(stdout);
         delay(200);
     }
+     */
     delay(1000);
 }
