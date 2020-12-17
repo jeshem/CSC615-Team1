@@ -3,4 +3,4 @@ project(assignment5 C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(driver main.c lineSensor.h irSensor.h motorcontroller.h motorcontroller.c irSensor.c lineSensor.c)
+add_executable(driver echosensor.c echosensor.h main.c lineSensor.h irSensor.h motorcontroller.h motorcontroller.c irSensor.c lineSensor.c)

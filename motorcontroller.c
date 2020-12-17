@@ -47,6 +47,7 @@
 void runMotors() {
     while (true) {
         //do nothing for now, later check for control flags
+
         if (middleLineOn) {
             printf("Tracking Middle line\n");
             forward(HalfSpeed);

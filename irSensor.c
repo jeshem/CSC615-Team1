@@ -3,6 +3,7 @@
 //
 
 #include "irSensor.h"
+#include "motorcontroller.h"
 #include <stdio.h>
 #include <pthread.h>
 #include <stdbool.h>
@@ -27,11 +28,17 @@ void *readIr(void *threadid) {
     while (true) {
         int ir = digitalRead(FrontIR);
         if (ir != 1) {
+            obstacleInFront = true;
             printf("Something is in front of the Car\n");
+        } else {
+            obstacleInFront = false;
         }
         ir = digitalRead(FrontSidewaysIR);
         if (ir != 1) {
+            obstacleOnLeft = true;
             printf("Something is to the left of the front of theCar\n");
+        } else {
+            obstacleOnLeft = false;
         }
         ir = digitalRead(RearIR);
         if (ir != 1) {
@@ -40,6 +47,10 @@ void *readIr(void *threadid) {
         ir = digitalRead(RearSidewaysIR);
         if (ir != 1) {
             printf("Something is to the left of the back of the Car\n");
+        } else {
+            if (avoidingObstacle) {
+                obstacleClearedBack = true;
+            }
         }
         //delay(1000);
     }

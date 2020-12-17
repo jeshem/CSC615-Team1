@@ -54,8 +54,10 @@ bool middleLineOn;
 bool leftLineOn;
 bool rightLineOn;
 
-bool avoidingObstacle;
-bool rotatingRight;
-bool rotatingLeft;
+bool avoidingObstacle = false;
+bool rotatingRight = false;
+bool rotatingLeft = false;
 
-bool obstacleInFront;
+bool obstacleInFront = false;
+bool obstacleOnLeft = false;
+bool obstacleClearedBack = false;
