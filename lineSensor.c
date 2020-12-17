@@ -47,40 +47,40 @@ void *readLine(void *threadid) {
             forward(HalfSpeed);
             delay(50);
         } else {
-            //stopMotors();
+            stopMotors();
             middleLineOn = false;
             //printf("Off the Middle line\n");
-        }
-
-        line = digitalRead(LeftLine);
-        if (line != baseLeftLineReading) {
-            //printf("LeftLine detected! Angle Left\n");
-            leftLineOn = true;
-            /*
-            while (digitalRead(MiddleLine) != 1) {
-                rotateLeft();
+        
+            line = digitalRead(LeftLine);
+            if (line != baseLeftLineReading) {
+                //printf("LeftLine detected! Angle Left\n");
+                leftLineOn = true;
+                /*
+                while (digitalRead(MiddleLine) != 1) {
+                    rotateLeft();
+                }
+                stopMotors();
+                 */
+            } else {
+                leftLineOn = false;
+                //printf("Off the line\n");
             }
-            stopMotors();
-             */
-        } else {
-            leftLineOn = false;
-            //printf("Off the line\n");
-        }
 
-        line = digitalRead(RightLine);
-        if (line != baseRightLineReading) {
-            rightLineOn = true;
-            //printf("RightLine detected! Angle Right\n");
-            /*
-            while (digitalRead(MiddleLine) != 1) {
-                rotateRight();
+            line = digitalRead(RightLine);
+            if (line != baseRightLineReading) {
+                rightLineOn = true;
+                //printf("RightLine detected! Angle Right\n");
+                /*
+                while (digitalRead(MiddleLine) != 1) {
+                    rotateRight();
+                }
+                 */
+
+                //stopMotors();
+            } else {
+                rightLineOn = false;
+                //printf("Off the line\n");
             }
-             */
-            
-            //stopMotors();
-        } else {
-            rightLineOn = false;
-            //printf("Off the line\n");
         }
 
         //delay(100);
