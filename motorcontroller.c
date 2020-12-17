@@ -70,6 +70,7 @@ void runMotors() {
             printf("should be moving forward at low speed\n");
             forward(OneSpeed);
         } else {
+            printf("No sensors activated should move forward...\n");
             forward(OneSpeed);
         }
     }
