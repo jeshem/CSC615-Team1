@@ -82,6 +82,7 @@ void runMotors() {
             printf("No sensors activated should move forward...\n");
             forward(OneSpeed);
         }
+        delay(100);
     }
 }
 
@@ -183,10 +184,10 @@ void rotateRight() {
 
     enableMotors();
     softPwmWrite(FRONTRIGHTCONTROL1, 0);
-    softPwmWrite(FRONTRIGHTCONTROL2, OneSpeed);
+    softPwmWrite(FRONTRIGHTCONTROL2, 0);
 
     softPwmWrite(REARRIGHTCONTROL1, 0);
-    softPwmWrite(REARRIGHTCONTROL2, OneSpeed);
+    softPwmWrite(REARRIGHTCONTROL2, 0);
 
     //left side motors go forward OneSpeed
     softPwmWrite(FRONTLEFTCONTROL1, OneSpeed);
@@ -222,10 +223,10 @@ void rotateLeft() {
 
     //left side motors go forward OneSpeed
     softPwmWrite(FRONTLEFTCONTROL1, 0);
-    softPwmWrite(FRONTLEFTCONTROL2, OneSpeed);
+    softPwmWrite(FRONTLEFTCONTROL2, 0);
 
     softPwmWrite(REARLEFTCONTROL1, 0);
-    softPwmWrite(REARLEFTCONTROL2, OneSpeed);
+    softPwmWrite(REARLEFTCONTROL2, 0);
 }
 
 void reverse(){
