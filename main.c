@@ -87,7 +87,6 @@ int main(int argc, char *argv[]) {
                 rightLineOn = false;
                 printf("Off the line\n");
             }*/
-        }
     }
     return 0;
 }
