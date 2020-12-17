@@ -158,6 +158,8 @@ void forward(int speed){
 
 void rotateRight() {
     //right side motors go reverse halfspeed
+
+    enableMotors();
     softPwmWrite(FRONTRIGHTCONTROL1, 0);
     softPwmWrite(FRONTRIGHTCONTROL2, HalfSpeed);
 
@@ -172,8 +174,24 @@ void rotateRight() {
     softPwmWrite(REARLEFTCONTROL2, 0);
 }
 
+void enableMotors() {
+    digitalWrite(FRONTLEFT, HIGH);
+    digitalWrite(REARLEFT, HIGH);
+    digitalWrite(REARRIGHT, HIGH);
+    digitalWrite(FRONTRIGHT, HIGH);
+}
+
+void disableMotors() {
+    digitalWrite(FRONTLEFT, LOW);
+    digitalWrite(REARLEFT, LOW);
+    digitalWrite(REARRIGHT, LOW);
+    digitalWrite(FRONTRIGHT, LOW);
+}
+
 void rotateLeft() {
     //right side motors go reverse halfspeed
+
+    enableMotors();
     softPwmWrite(FRONTRIGHTCONTROL1, HalfSpeed);
     softPwmWrite(FRONTRIGHTCONTROL2, 0);
 
@@ -223,10 +241,7 @@ void accelerate(){
 
 void brake(){
     int power;
-    digitalWrite(FRONTLEFT, LOW);
-    digitalWrite(REARLEFT, LOW);
-    digitalWrite(REARRIGHT, LOW);
-    digitalWrite(FRONTRIGHT, LOW);
+    disableMotors();
     /*
     for (power=HighSpeed; power>LowSpeed; power-=10) {
         softPwmWrite(FRONTLEFT, 0);

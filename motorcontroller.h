@@ -24,6 +24,8 @@ void reverse();
 void accelerate();
 void brake();
 void testMotors();
+void enableMotors();
+void disableMotors();
 
 #define HIGH 1
 #define LOW 0
