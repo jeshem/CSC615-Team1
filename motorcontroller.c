@@ -180,13 +180,13 @@ void forward(int speed){
     //Motor 1 Forward
     //softPwmCreate(FRONTLEFT, speed, speed);
     digitalWrite(FRONTLEFT, HIGH);
-    softPwmWrite(FRONTLEFTCONTROL1, speed);
+    softPwmWrite(FRONTLEFTCONTROL1, speed+5);
     softPwmWrite(FRONTLEFTCONTROL2, 0);
 
     //Motor 2 Forward
     //softPwmCreate(REARLEFT, speed, speed);
     digitalWrite(REARLEFT, HIGH);
-    softPwmWrite(REARLEFTCONTROL1, speed);
+    softPwmWrite(REARLEFTCONTROL1, speed+5);
     softPwmWrite(REARLEFTCONTROL2, 0);
 
     //Motor 3 Forward
