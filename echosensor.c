@@ -16,6 +16,8 @@
 #include <wiringPi.h>
 #include <stdio.h>
 #include <time.h>
+#include<stdlib.h>
+
 
 #define TRIGGERFRONT 21
 #define ECHOFRONT 22
