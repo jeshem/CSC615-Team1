@@ -173,7 +173,7 @@ void stopMotors() {
 }
 
 void forward(int speed){
-    enableMotors();
+    //enableMotors();
     rotatingRight = false; rotatingRight = false;
     printf("Should be running forward\n");
 
