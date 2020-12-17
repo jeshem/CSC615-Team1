@@ -69,6 +69,8 @@ void runMotors() {
         } else if (!rightLineOn && !leftLineOn && !middleLineOn) {
             printf("should be moving forward at low speed\n");
             forward(OneSpeed);
+        } else {
+            forward(OneSpeed);
         }
     }
 }
