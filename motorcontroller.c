@@ -181,25 +181,25 @@ void forward(int speed){
     //softPwmCreate(FRONTLEFT, speed, speed);
     digitalWrite(FRONTLEFT, HIGH);
     softPwmWrite(FRONTLEFTCONTROL1, speed);
-    softPwmWrite(FRONTLEFTCONTROL2, 0);
+    //softPwmWrite(FRONTLEFTCONTROL2, 0);
 
     //Motor 2 Forward
     //softPwmCreate(REARLEFT, speed, speed);
     digitalWrite(REARLEFT, HIGH);
     softPwmWrite(REARLEFTCONTROL1, speed);
-    softPwmWrite(REARLEFTCONTROL2, 0);
+    //softPwmWrite(REARLEFTCONTROL2, 0);
 
     //Motor 3 Forward
     //softPwmCreate(REARRIGHT, speed, speed);
     digitalWrite(REARRIGHT, HIGH);
     softPwmWrite(REARRIGHTCONTROL1, speed);
-    softPwmWrite(REARRIGHTCONTROL2, 0);
+    //softPwmWrite(REARRIGHTCONTROL2, 0);
 
     //Motor 4 Forward
     //softPwmCreate(FRONTRIGHT, speed, speed);
     digitalWrite(FRONTRIGHT, HIGH);
     softPwmWrite(FRONTRIGHTCONTROL1, speed);
-    softPwmWrite(FRONTRIGHTCONTROL2, 0);
+    //softPwmWrite(FRONTRIGHTCONTROL2, 0);
 
     delay(500);
 }
