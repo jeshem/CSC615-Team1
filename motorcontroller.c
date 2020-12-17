@@ -223,10 +223,10 @@ void accelerate(){
 
 void brake(){
     int power;
-    softPwmWrite(FRONTLEFT, LOW);
-    softPwmWrite(REARLEFT, LOW);
-    softPwmWrite(REARRIGHT, LOW);
-    softPwmWrite(FRONTRIGHT, LOW);
+    digitalWrite(FRONTLEFT, LOW);
+    digitalWrite(REARLEFT, LOW);
+    digitalWrite(REARRIGHT, LOW);
+    digitalWrite(FRONTRIGHT, LOW);
     /*
     for (power=HighSpeed; power>LowSpeed; power-=10) {
         softPwmWrite(FRONTLEFT, 0);
