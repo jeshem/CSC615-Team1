@@ -43,6 +43,7 @@ int main(int argc, char *argv[]) {
         printf("Rotating right\n");
         rotateRight();
         delay(6000);
+        brake();
         printf("Rotating left\n");
         rotateLeft();
         delay(6000);
