@@ -47,16 +47,18 @@
 void runMotors() {
     while (true) {
         //do nothing for now, later check for control flags
-        if (obstacleInFront) {
+        /*if (obstacleInFront) {
             brake();
             printf("Obstacle in front... braking.\n");
-        } else if (middleLineOn) {
+        } else*/
+        if (middleLineOn) {
             printf("Tracking Middle line\n");
             forward(OneSpeed);
             rotatingRight = false;
             rotatingLeft = false;
-            delay(500);
-        } else if (leftLineOn) {
+            delay(1000);
+        }/*
+        else if (leftLineOn) {
             printf("Should be rotating left\n");
             rotatingLeft = true;
             while (digitalRead(MiddleLine) != baseMiddleLineReading) {
@@ -87,6 +89,7 @@ void runMotors() {
             printf("No sensors activated should move forward...\n");
             forward(OneSpeed);
         }
+        */
         delay(50);
     }
 }
