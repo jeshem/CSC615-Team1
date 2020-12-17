@@ -84,7 +84,7 @@ int main(int argc, char *argv[]) {
                 printf("Off the line\n");
             }
         }
-        delay(100);
+        //delay(100);
     }
     return 0;
 }
