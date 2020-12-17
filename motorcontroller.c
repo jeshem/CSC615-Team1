@@ -215,10 +215,10 @@ void rotateRight() {
     softPwmWrite(REARRIGHTCONTROL2, 0);
 
     //left side motors go forward OneSpeed
-    softPwmWrite(FRONTLEFTCONTROL1, OneSpeed);
+    softPwmWrite(FRONTLEFTCONTROL1, HalfSpeed);
     softPwmWrite(FRONTLEFTCONTROL2, 0);
 
-    softPwmWrite(REARLEFTCONTROL1, OneSpeed);
+    softPwmWrite(REARLEFTCONTROL1, HalfSpeed);
     softPwmWrite(REARLEFTCONTROL2, 0);
 }
 
