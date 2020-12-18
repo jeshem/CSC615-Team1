@@ -56,34 +56,33 @@ int main(int argc, char *argv[]) {
             //stopMotors();
             middleLineOn = false;
             printf("Off the Middle line\n");
-        }
 
-        line = digitalRead(LeftLine);
-        if (line != baseLeftLineReading) {
-            printf("LeftLine detected! Angle Left\n");
-            leftLineOn = true;
-            while (digitalRead(MiddleLine) != baseMiddleLineReading) {
-                rotateLeft();
+            line = digitalRead(LeftLine);
+            if (line != baseLeftLineReading) {
+                printf("LeftLine detected! Angle Left\n");
+                leftLineOn = true;
+                while (digitalRead(MiddleLine) != baseMiddleLineReading) {
+                    rotateLeft();
+                }
+                //stopMotors();
+            } else {
+                leftLineOn = false;
+                printf("Off the line\n");
             }
-            //stopMotors();
-        } else {
-            leftLineOn = false;
-            printf("Off the line\n");
-        }
 
-        line = digitalRead(RightLine);
-        if (line != baseRightLineReading) {
-            rightLineOn = true;
-            printf("RightLine detected! Angle Right\n");
-            while (digitalRead(MiddleLine) != baseMiddleLineReading) {
-                rotateRight();
+            line = digitalRead(RightLine);
+            if (line != baseRightLineReading) {
+                rightLineOn = true;
+                printf("RightLine detected! Angle Right\n");
+                while (digitalRead(MiddleLine) != baseMiddleLineReading) {
+                    rotateRight();
+                }
+                //stopMotors();
+            } else {
+                rightLineOn = false;
+                printf("Off the line\n");
             }
-            //stopMotors();
-        } else {
-            rightLineOn = false;
-            printf("Off the line\n");
         }
-
         //delay(100);
     }
     return 0;
