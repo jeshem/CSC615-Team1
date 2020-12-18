@@ -50,7 +50,7 @@ int main(int argc, char *argv[]) {
             middleLineOn = true;
             rotatingLeft = false;
             rotatingRight = false;
-            forward(HalfSpeed);
+            forward(HalfSpeed-5);
             delay(50);
         } else {
             //stopMotors();
