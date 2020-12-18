@@ -66,6 +66,7 @@ int main(int argc, char *argv[]) {
                 }
                 //stopMotors();
             } else {
+                forward(OneSpeed);
                 leftLineOn = false;
                 printf("Off the line\n");
             }
@@ -80,6 +81,7 @@ int main(int argc, char *argv[]) {
                 //stopMotors();
             } else {
                 rightLineOn = false;
+                forward(OneSpeed);
                 printf("Off the line\n");
             }
         }
