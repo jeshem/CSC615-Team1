@@ -36,48 +36,54 @@ void setupInitialLineRead() {
 
 void *readLine(void *threadid) {
     long tid = (long)threadid;
-    stopMotors();
+    //stopMotors();
+    //enableMotors();
+    //forward(OneSpeed);
     while (true) {
         int line = digitalRead(MiddleLine);
         if (line == baseMiddleLineReading) {
             //printf("Tracking Middle line\n");
             middleLineOn = true;
-            //forward(HalfSpeed);
+            rotatingLeft = false;
+            rotatingRight = false;
+            //forward(OneSpeed);
+            delay(500);
         } else {
             //stopMotors();
             middleLineOn = false;
-            //printf("Off the Middle line\n");
-        }
+            printf("Off the Middle line\n");
+        
+            line = digitalRead(LeftLine);
+            if (line != baseLeftLineReading) {
+                printf("LeftLine detected! Angle Left\n");
+                leftLineOn = true;
+                /*
+                while (digitalRead(MiddleLine) != 1) {
+                    rotateLeft();
+                }
 
-        line = digitalRead(LeftLine);
-        if (line != baseLeftLineReading) {
-            //printf("LeftLine detected! Angle Left\n");
-            leftLineOn = true;
-            /*
-            while (digitalRead(MiddleLine) != 1) {
-                rotateLeft();
-            }
-            stopMotors();
-             */
-        } else {
-            leftLineOn = false;
-            //printf("Off the line\n");
-        }
+                stopMotors();
+                 */
 
-        line = digitalRead(RightLine);
-        if (line != baseRightLineReading) {
-            rightLineOn = true;
-            //printf("RightLine detected! Angle Right\n");
-            /*
-            while (digitalRead(MiddleLine) != 1) {
-                rotateRight();
+            } else {
+                leftLineOn = false;
+                //printf("Off the line\n");
             }
-             */
-            
-            //stopMotors();
-        } else {
-            rightLineOn = false;
-            //printf("Off the line\n");
+
+            line = digitalRead(RightLine);
+            if (line != baseRightLineReading) {
+                rightLineOn = true;
+                printf("RightLine detected! Angle Right\n");
+                /*
+                while (digitalRead(MiddleLine) != 1) {
+                    rotateRight();
+                }
+                stopMotors();
+                 */
+            } else {
+                rightLineOn = false;
+                //printf("Off the line\n");
+            }
         }
 
         //delay(100);
