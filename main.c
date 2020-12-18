@@ -50,7 +50,7 @@ int main(int argc, char *argv[]) {
             middleLineOn = true;
             rotatingLeft = false;
             rotatingRight = false;
-            forward(HalfSpeed);
+            forward(OneSpeed);
             delay(50);
         } else {
             //stopMotors();
@@ -66,7 +66,7 @@ int main(int argc, char *argv[]) {
                 }
                 //stopMotors();
             } else {
-                forward(HalfSpeed);
+                forward(OneSpeed);
                 leftLineOn = false;
                 printf("Off the line\n");
             }
@@ -81,7 +81,7 @@ int main(int argc, char *argv[]) {
                 //stopMotors();
             } else {
                 rightLineOn = false;
-                forward(HalfSpeed);
+                forward(OneSpeed);
                 printf("Off the line\n");
             }
         }
