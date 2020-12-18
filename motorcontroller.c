@@ -240,10 +240,10 @@ void rotateLeft() {
     //right side motors go reverse OneSpeed
 
     //enableMotors();
-    softPwmWrite(FRONTRIGHTCONTROL1, HalfSpeed);
+    softPwmWrite(FRONTRIGHTCONTROL1, ThreeSpeed);
     softPwmWrite(FRONTRIGHTCONTROL2, 0);
 
-    softPwmWrite(REARRIGHTCONTROL1, HalfSpeed);
+    softPwmWrite(REARRIGHTCONTROL1, ThreeSpeed);
     softPwmWrite(REARRIGHTCONTROL2, 0);
 
     //left side motors go forward OneSpeed
